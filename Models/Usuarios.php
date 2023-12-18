@@ -48,5 +48,16 @@ class Usuarios
 
     }
 
+    public function update( $email)
+    {
+        $query = "UPDATE informacion_completa SET email = ?", $nombres . $apellidos, $direccion, $fechaNacimiento, $claseAsignada;
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute([$email]);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
 }
 

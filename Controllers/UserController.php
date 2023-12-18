@@ -48,5 +48,20 @@ class UserController
         }
  
     }
+
+    #necesario una funcion aparte para crear datos
+    public function update(){
+        $email =  $_POST['email'];
+        $nombres =  $_POST['nombres'];
+        $apellidos =  $_POST['apellidos'];
+        $direccion =  $_POST['direccion'];
+        $fechaNacimiento =  $_POST['fechaNacimiento'];
+        $claseAsignada =  $_POST['claseAsignada'];
+
+        $usuarios= new Usuarios;
+        $usuarios->update($email, $nombres . $apellidos, $direccion, $fechaNacimiento, $claseAsignada);
+        
+
+    }
 }
 

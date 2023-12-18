@@ -35,7 +35,7 @@
         <div class="sectionPerfil">
             <p class="menuparafo">MENU ADMINISTRADOR</p>
             <a href="" class="linkOf">Clases</a>
-            <a href="" class="linkOf">Clases</a>
+            <a href="./createTeachers.php" class="linkOf">Maestros</a>
             <a href="" class="linkOf">Clases</a>
             <a href="" class="linkOf">Clases</a>
 
@@ -69,7 +69,7 @@
         <p>Selecciona en la izquierda para ver tus clases</p>
     </section>
     
-    
+
 </body>
 
 </html>

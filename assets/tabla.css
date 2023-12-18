@@ -1,3 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.id{
+    width: 5%;
+    text-align: left;
+    border: 1px solid #000;
+    padding: 0.3em;
+
+}
+
 th,
 td {
     width: 15%;
@@ -12,4 +28,47 @@ th {
 
 table {
     border-collapse: collapse;
+    margin-left: 30px;
+}
+
+.infoPage{
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    position: absolute;
+    top: 130px;
+    left: 17%;
+    height: 75%;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.table_info{
+    position: absolute;
+    top: 220px;
+    left: 310px;
+}
+
+.infoMaestrosBtn{
+    border-bottom: solid 1px #bbbbbb;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+}
+
+#agregarMaestro{
+    padding: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007CF9;
+    color: white;
+
+}
+#agregarMaestro:hover{
+    background-color: #00c3f9 ;
+    transition: 0.3s;
+
 }
