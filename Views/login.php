@@ -11,13 +11,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/login.css">
 </head>
-
 <body>
     <section class="allBoxLogin">
         <img src="../assets/logo.jpg" alt="university_Icon" class="university_Icon">
         <section class="boxLogin">
             <h3>Bienvenido Ingresa con tu cuenta</h3>
-            <form action="">
+            <form action="../index.php?controller=UserController&action=login" method="POST">
                 <div class="inputEmail">
                     <input type="email" name="email" placeholder="Email">
                     <span class="material-symbols-outlined emailIcon">
@@ -33,7 +32,6 @@
                 </div>
                 <div class="buttonClass">
                     <button type="submit">Ingresar</button>
-                    <a href="./info.php">&</a>
                 </div>
                 
             </form>
@@ -44,12 +42,12 @@
         <h4 class="infoAcceso">Información Acceso</h4>
         <div class="infoAdminMaestro">
         <p><strong>Admin</strong></p>
-        <p>user:asdas</p>
-        <p>pass:asdas</p>
+        <p>User:derek@gmail.com</p>
+        <p>Pass:1234</p>
 
         <p><strong>Maestros</strong></p>
-        <p>user:asdas1</p>
-        <p>pass:asdas1</p>
+        <p>User:juan@gmail.com</p>
+        <p>Pass:1234</p>
         </div>
     </section>
 </body>
