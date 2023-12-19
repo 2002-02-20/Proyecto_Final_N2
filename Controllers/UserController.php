@@ -12,21 +12,19 @@ class UserController
         $this->conexion = $database->getConexion();
     }
 
+    #FUNCIONA
     public function insertData()
     {
         $email =  $_POST['email'];
-
         $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
         $rol_id =  $_POST['rol'];
-
         $auth = new Usuarios;
-
         $auth->register($email,  $hash, $rol_id);
        # header('location: ../Views/tabla.php');
 
     }
 
+    #FUCIONA
     public function login()
     {
         $email =  $_POST['email'];
@@ -58,7 +56,7 @@ class UserController
         $usuarios= new Usuarios;
         $usuarios->registerTeacher($email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada);
         
-
+        header('location: ../Views/tabla.php' ); 
     }
 
     public function update(){
@@ -83,4 +81,21 @@ class UserController
         }
 }
 
+    public function selectTeacher()
+    {
+        $email =  $_POST['email'];
+        $usuarios= new Usuarios;
+        $usuarios->selectRegisterTeacher($email);
+    }
+
+
+    #actualizar los permisos de usuarios //FUNCIONA
+    public function permisosController()
+    {
+        $email = $_POST['email'];
+        $rol_id =  $_POST['rol'];
+        $usuarios= new Usuarios;
+        $usuarios->permisos($rol_id, $email);
+
+    }
 }

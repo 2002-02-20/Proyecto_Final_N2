@@ -1,3 +1,6 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 

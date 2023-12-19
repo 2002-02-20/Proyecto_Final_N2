@@ -15,22 +15,25 @@
 
 <body>
     <section class="createPerfil">
+        <h3>Crear Cuenta</h3>
         <form action="../index.php?controller=Usercontroller&action=insertData" method="POST">
-            <div class="inputEmail">
-                <label for="emailUsuario">Email del Usuario</label>
+        <label for="emailUsuario">Email del Usuario</label>
+    
+        <div class="inputEmail">
                 <input type="email" id="emailUsuario" name="email" placeholder="Email"><br>
                 <span class="material-symbols-outlined emailIcon">
                     mail
                 </span>
             </div>
 
+            <label for="passUsuario">Contraseña del Usuario</label>
             <div class="inputPassword">
-                <input type="password" name="password" placeholder="Password"><br>
+                <input type="password" id="passUsuario" name="password" placeholder="Password"><br>
                 <span class="material-symbols-outlined lockIcon">
                     lock
                 </span>
             </div>
-
+            <label for="">Selecciona el Rol</label>
             <div class="selectInput">
                 <select name="rol">
                     <option value="" disabled selected>Selecciona un rol</option>
@@ -41,7 +44,7 @@
             </div>
 
             <div class="buttonClass">
-                <button type="submit">Ingresar</button>
+                <button type="submit" class="btnIngresar">Ingresar</button>
             </div>
 
         </form>

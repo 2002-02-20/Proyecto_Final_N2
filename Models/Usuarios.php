@@ -15,6 +15,7 @@ class Usuarios
         $this->conexion = $database->getConexion();
     }
 
+    #FUNCIONA
     public function register($email, $password, $rol_id)
     {
         $query = "INSERT INTO usuarios(`email`, `password`, `rol_id`) VALUES (?,?,?)";
@@ -44,7 +45,24 @@ class Usuarios
         }
 
     }
-        
+       
+    public function selectRegisterTeacher($email)
+    {
+        $query = 'SELECT * FROM informacion WHERE email = ?';
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute([$email]);
+
+            $result = $stm->fetch(PDO::FETCH_ASSOC);
+
+            return $result; 
+        }
+        catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
 
     public function update($email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada)
     {
@@ -78,6 +96,24 @@ class Usuarios
 
     }
 
+    
+    #actualizar los permisos de usuarios //FUNCIONA
+    public function permisos($rol_id, $email)
+    {
+        $query = 'UPDATE `usuarios` SET `rol_id`=? WHERE email=?';
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute([$rol_id, $email]);
+            $result = $stm->fetch(PDO::FETCH_ASSOC);
+
+        }
+        catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
     public function delete($id)
     {
         $query = 'DELETE FROM informacion WHERE id = ?';
@@ -89,6 +125,5 @@ class Usuarios
             echo $e->getMessage();
         }
     }
-    
 }
 
