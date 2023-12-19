@@ -45,6 +45,7 @@ class UserController
  
     }
     
+    #funciona
     public function registerTeacher(){
         $email =  $_POST['email'];
         $nombres =  $_POST['nombres'];
@@ -80,14 +81,14 @@ class UserController
             $usuario->delete($id);
         }
 }
-
+    /*
     public function selectTeacher()
     {
         $email =  $_POST['email'];
         $usuarios= new Usuarios;
         $usuarios->selectRegisterTeacher($email);
     }
-
+    */
 
     #actualizar los permisos de usuarios //FUNCIONA
     public function permisosController()

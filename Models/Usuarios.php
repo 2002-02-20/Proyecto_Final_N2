@@ -45,16 +45,16 @@ class Usuarios
         }
 
     }
-       
-    public function selectRegisterTeacher($email)
+
+       #TRAER TODOS LOS MAESTROS A LA VISTA
+    public function selectRegisterTeacher()
     {
-        $query = 'SELECT * FROM informacion WHERE email = ?';
+        $query = 'SELECT * FROM informacion';
 
         try {
             $stm = $this->conexion->prepare($query);
-            $stm->execute([$email]);
-
-            $result = $stm->fetch(PDO::FETCH_ASSOC);
+            $stm->execute();
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
             return $result; 
         }

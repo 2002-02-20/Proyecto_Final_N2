@@ -1,5 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php'; 
+$select = new Usuarios;
+$allData = $select->selectRegisterTeacher(); 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,12 +34,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
                 <th>Clase Asignada</th>
                 <th>Editar Inf.</th>
             </tr>
+            <?php foreach ($allData as $key):?>
             <tr>
-                <td class="id" >1</td>
-                <td>Juan Montalvo</td>
-                <td>juan@gamsa.com</td>
-                <td>22/03/2002</td>
-                <td>Ciencias</td>
+                    
+                <td class="id" ><?= $key['id']?></td>
+                <td><?= $key['nombres'] . $key['apellidos']?></td>
+                <td><?= $key['email']?></td>
+                <td><?= $key['fecha_nacimiento']?></td>
+                <td><?= $key['clase_id']?></td>
+
                 <td>
                     <a href="./updateTeacher.php"><span class="material-symbols-outlined">
                         edit
@@ -45,6 +52,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
                     </span></a>
 
                 </td>
+                <?php endforeach; ?>
             </tr>
         </table>
     </section>
