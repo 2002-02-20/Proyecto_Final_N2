@@ -29,7 +29,37 @@ class Usuarios
         }
 
     }
+
+    public function registerTeacher($email, $nombres, $apellidos,  $direccion, $fechaNacimiento, $claseAsignada)
+    {
+        $query = "INSERT INTO informacion(`email`, `nombres`, `apellidos`, `direccion`, `fecha_nacimiento`, `clase_id`) VALUES (?,?,?,?,?,?)"; //
         
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute([$email, $nombres, $apellidos,  $direccion, $fechaNacimiento, $claseAsignada]);
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+        
+
+    public function update($email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada)
+    {
+
+        $query = "UPDATE `informacion` SET `email`=?, `nombres`= ?,`apellidos`=?,`direccion`=?, `fecha_nacimiento`=?, `clase_id`=?";
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute([$email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada]);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
     public function select($email)
     {
         $query = 'SELECT * FROM usuarios WHERE email = ?';
@@ -48,16 +78,17 @@ class Usuarios
 
     }
 
-    public function update( $email)
+    public function delete($id)
     {
-        $query = "UPDATE informacion_completa SET email = ?", $nombres . $apellidos, $direccion, $fechaNacimiento, $claseAsignada;
+        $query = 'DELETE FROM informacion WHERE id = ?';
+
         try {
             $stm = $this->conexion->prepare($query);
-            $stm->execute([$email]);
-        } catch (PDOException $e) {
+            $stm->execute([$id]);
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
-
     }
+    
 }
 

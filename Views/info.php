@@ -34,10 +34,9 @@
         </div>
         <div class="sectionPerfil">
             <p class="menuparafo">MENU ADMINISTRADOR</p>
-            <a href="" class="linkOf">Clases</a>
-            <a href="./createTeachers.php" class="linkOf">Maestros</a>
-            <a href="" class="linkOf">Clases</a>
-            <a href="" class="linkOf">Clases</a>
+            <a href="./tabla.php" class="linkOf">Maestros</a>
+            <a href="./createperfil.php" class="linkOf">Crear Perfil</a>
+            <a href="./permisos.php" class="linkOf">Permisos</a>
 
         </div>
     </nav>

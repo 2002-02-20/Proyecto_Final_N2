@@ -37,9 +37,10 @@
                     <a href="./updateTeacher.php"><span class="material-symbols-outlined">
                         edit
                     </span></a>
-                    <span class="material-symbols-outlined">
+                    <a href="../index.php?controller=UserController&action=delete"><span class="material-symbols-outlined">
                         delete
-                    </span>
+                    </span></a>
+
                 </td>
             </tr>
         </table>

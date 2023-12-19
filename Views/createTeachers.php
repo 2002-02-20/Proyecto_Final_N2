@@ -9,11 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/createTeachers.css">
+    <script src="../JS/closeMenu.js" defer></script>
 </head>
 <body>
 
     <section class="createTeachers">
-    <form action="../index.php?controller=UserController&action=update" method="POST">
+    <form action="../index.php?controller=UserController&action=registerTeacher" method="POST">
         <h2>Agregar Maestro</h2>
         <label for="email"><strong>Correo Electronico</strong></label><br>
         <input type="text" id ="email" name="email" placeholder="Ingresa email"><br><br>
@@ -33,7 +34,6 @@
         <label for="telefono"><strong>Clase Asignada</strong></label>
         <select name="claseAsignada" >
             <option value="" disabled selected>Seleccion Clases</option>
-            <option value="" >Seleccion Clases</option>
             <option value="1" >Matematicas</option>
             <option value="2" >Física</option>
             <option value="3" >Ciencias Naturales</option>

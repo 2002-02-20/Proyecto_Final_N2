@@ -18,3 +18,4 @@ logout.addEventListener('mouseover', () => {
     perfil.classList.remove('mouseColorNav');
 
 })
+

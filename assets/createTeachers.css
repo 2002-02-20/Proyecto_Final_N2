@@ -63,3 +63,7 @@ input{
     background-color: #00c3f9 ;
     transition: 0.3s;
 }
+
+.displayNone{
+    display: none;
+}

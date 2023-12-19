@@ -30,9 +30,7 @@ class UserController
     public function login()
     {
         $email =  $_POST['email'];
-
         $password =  $_POST['password'];
-
         $usuarios = new Usuarios;
         $user = $usuarios->select($email);
 
@@ -48,8 +46,21 @@ class UserController
         }
  
     }
+    
+    public function registerTeacher(){
+        $email =  $_POST['email'];
+        $nombres =  $_POST['nombres'];
+        $apellidos =  $_POST['apellidos'];
+        $direccion =  $_POST['direccion'];
+        $fechaNacimiento =  $_POST['fechaNacimiento'];
+        $claseAsignada =  $_POST['claseAsignada'];
 
-    #necesario una funcion aparte para crear datos
+        $usuarios= new Usuarios;
+        $usuarios->registerTeacher($email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada);
+        
+
+    }
+
     public function update(){
         $email =  $_POST['email'];
         $nombres =  $_POST['nombres'];
@@ -59,9 +70,17 @@ class UserController
         $claseAsignada =  $_POST['claseAsignada'];
 
         $usuarios= new Usuarios;
-        $usuarios->update($email, $nombres . $apellidos, $direccion, $fechaNacimiento, $claseAsignada);
-        
-
+        $usuarios->update($email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada);
+    
     }
+
+    public function delete(){
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $usuario = new Usuarios;
+            $usuario->delete($id);
+        }
 }
 
+}
