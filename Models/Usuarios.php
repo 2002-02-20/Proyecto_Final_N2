@@ -116,6 +116,25 @@ class Usuarios
 
     }
 
+    public function selectRol()
+    {
+        $query = 'SELECT informacion.*, roles.id AS roles_id, roles.rol AS rol_nombre FROM informacion JOIN roles ON roles.id = informacion.rol_id';
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute();
+
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+            return $result; 
+        }
+        catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+
+
     
     #actualizar los permisos de usuarios //FUNCIONA
     public function permisos($rol_id, $email)

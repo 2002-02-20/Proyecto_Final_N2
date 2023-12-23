@@ -20,6 +20,13 @@ class UserController
 
     }
 
+    public function selecRol()
+    {
+        $select = new Usuarios();
+        $selectRol = $select->selectRol();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/permisos.php';
+
+    }
 
     #FUNCIONA
     public function insertData()
@@ -29,7 +36,7 @@ class UserController
         $rol_id =  $_POST['rol'];
         $auth = new Usuarios;
         $auth->register($email,  $hash, $rol_id);
-       #header('location: ../Views/tabla.php');
+
 
     }
 
@@ -94,18 +101,6 @@ class UserController
 
     }
 
-    public function destroy() //Jairo
-    {
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-
-            $usuario = new Usuarios;
-            $usuario->delete($id, $usuario);
-
-            header('location:  index.php?controller=UserController&action=index');
-        }
-    }
-    
 
     #actualizar los permisos de usuarios //FUNCIONA
     public function permisosController()
@@ -121,6 +116,18 @@ class UserController
         print_r($usuarios); 
     }
 
+    public function destroy() //Jairo
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $usuario = new Usuarios;
+            $usuario->delete($id, $usuario);
+
+            header('location:  index.php?controller=UserController&action=index');
+        }
+    }
+    
     public function logout()
     {
         session_destroy();

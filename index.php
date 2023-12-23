@@ -8,7 +8,7 @@ if (isset($_SESSION['userData'])) {
     $maestros1 = ['maestro'  => 'index.php?', 'Maestro'=>'index.php?']; 
     $navBArMaestros = ['Maestro'=>'index.php?']; 
 
-    $admin = ['Permisos' => '', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => ''];
+    $admin = ['Permisos' => 'index.php?controller=UserController&action=selecRol', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => ''];
 
     $admin1 = ['admin'  => 'index.php?', 'Administrador'=>'index.php?']; 
     $navBAr = ['Administrador'=>'index.php?']; 
