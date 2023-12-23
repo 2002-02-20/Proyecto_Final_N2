@@ -28,6 +28,15 @@ class UserController
 
     }
 
+    public function selectClase()
+    {
+        $select = new Usuarios();
+        $selectClase = $select->selectClases();
+
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/clases.php';
+
+    }
+
     #FUNCIONA
     public function insertData()
     {
@@ -105,15 +114,15 @@ class UserController
     #actualizar los permisos de usuarios //FUNCIONA
     public function permisosController()
     {
+
         $email = $_POST['email'];
         $rol_id =  $_POST['rol'];
-        $usuarios= new Usuarios;
-        $usuarios->permisos($rol_id, $email);
 
-       
-        #header('location: ../Views/permisos.php');
-        #exit();
-        print_r($usuarios); 
+        $usuario = new Usuarios;
+        $usuario->permisos($rol_id, $email,);
+
+        header('location:  index.php?controller=UserController&action=selecRol');
+     
     }
 
     public function destroy() //Jairo

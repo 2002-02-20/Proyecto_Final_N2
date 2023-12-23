@@ -16,8 +16,9 @@ ul{
 
 .li{
     list-style: none;
-    padding-top: 10px;
+    padding: 10px 0px;
 }
+
 a{
     text-decoration: none;
 }
@@ -147,7 +148,7 @@ h2:hover{
 .sectionPerfil{
     display: flex;
     flex-direction: column;
-    padding: 20px 0px 5px 20px;
+    padding: 20px 0px 5px 0px;
 
 }
 .menuparafo{
@@ -159,3 +160,21 @@ h2:hover{
 }
 
 
+.li:hover{
+    background-color: #dddddd;
+    
+}
+
+.li >a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: black;
+    display: block;
+
+}
+
+
+.sectionPerfil > p{
+    margin-left: 20px;
+
+}

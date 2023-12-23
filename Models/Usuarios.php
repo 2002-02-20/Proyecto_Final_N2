@@ -67,7 +67,7 @@ class Usuarios
        #TRAER TODOS LOS MAESTROS A LA VISTA
     public function selectRegisterTeacher()
     {
-        $query = 'SELECT * FROM informacion';
+        $query = 'SELECT informacion.*, clases.id AS clases_id, clases.clases AS clases_nombre FROM informacion LEFT JOIN clases ON clases.id = informacion.clase_id WHERE informacion.rol_id = 2';
 
         try {
             $stm = $this->conexion->prepare($query);
@@ -133,14 +133,32 @@ class Usuarios
 
     }
 
+    public function selectClases()
+    {
+        #$query = 'SELECT informacion.*, clases.id AS clases_id, clases.clases AS clases_nombre FROM informacion JOIN clases ON clases.id = informacion.clase_id';
+
+        $query = 'SELECT * FROM clases JOIN informacion ON clase_id = clases.id'; 
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute();
+
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+            return $result; 
+        }
+        catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
 
 
     
     #actualizar los permisos de usuarios //FUNCIONA
     public function permisos($rol_id, $email)
     {
-        $query = 'UPDATE `informacion` SET `rol_id`=? WHERE email=?';
-
+        $query = 'UPDATE `informacion` SET `rol_id`=? WHERE email = ?';
         try {
             $stm = $this->conexion->prepare($query);
             $stm->execute([$rol_id, $email]);

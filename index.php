@@ -7,8 +7,7 @@ if (isset($_SESSION['userData'])) {
     $tipoMenu2 = ['MENU MAESTRO'=> 'index.php?']; 
     $maestros1 = ['maestro'  => 'index.php?', 'Maestro'=>'index.php?']; 
     $navBArMaestros = ['Maestro'=>'index.php?']; 
-
-    $admin = ['Permisos' => 'index.php?controller=UserController&action=selecRol', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => ''];
+    $admin = ['Permisos' => 'index.php?controller=UserController&action=selecRol', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => 'index.php?controller=UserController&action=selectClase'];
 
     $admin1 = ['admin'  => 'index.php?', 'Administrador'=>'index.php?']; 
     $navBAr = ['Administrador'=>'index.php?']; 

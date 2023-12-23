@@ -39,6 +39,7 @@ table {
     height: 80%;
     border-radius: 10px;
     padding: 30px;
+    top: 60px
 }
 
 .table_info{
@@ -104,4 +105,11 @@ li{
 
 .btnNum{
     padding: 0px 5px;
+}
+
+.h3Permisos{
+    padding-bottom: 10px;
+    border-bottom: solid 1px #b9b9b9;
+    margin-bottom: 25px;
+
 }

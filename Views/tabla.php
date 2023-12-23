@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
 $select = new Usuarios;
-$allData = $select->selectJoin();
+$allData = $select->selectRegisterTeacher();
 
 ?>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -64,7 +64,7 @@ $allData = $select->selectJoin();
                         <div class="mb-3">
                             <label for="telefono"><strong>Clase Asignada</strong></label>
                             <select class="form-control" name="claseAsignada">
-                                <option value="" disabled selected>Seleccion Clases</option>
+                                <option value="">Seleccion Clases</option>
                                 <option value="1">Matematicas</option>
                                 <option value="2">Física</option>
                                 <option value="3">Ciencias Naturales</option>
@@ -209,7 +209,18 @@ $allData = $select->selectJoin();
                     <td><?= $key['email'] ?></td>
                     <td><?= $key['direccion'] ?></td>
                     <td><?= $key['fecha_nacimiento'] ?></td>
-                    <td><?= $key['clases_nombre'] ?></td>
+                    <td><?php if (!isset($key['clases_nombre'])) : ?>
+                        <style>
+                            .red{
+                                color: red;
+                            }
+                        </style>
+                            <span class="red">Sin Registro</span>
+                        <?php else : ?>
+                            <?= $key['clases_nombre']?>
+
+                        <?php endif ?>
+                    </td>
                     <td>
                         <a href="../index.php?controller=UserController&action=destroy&id=<?= $key['id'] ?>">
                             <span class="material-symbols-outlined">delete</span>

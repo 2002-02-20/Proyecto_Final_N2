@@ -32,15 +32,16 @@
             <?php endforeach; ?>
 
         </div>
+
         <div class="sectionPerfil">
 
             <?php foreach ($tipoMenu as $key => $options) : ?>
-            <p><?= $key ?></p>
+            <p ><?= $key ?></p>
             <?php endforeach; ?>
 
-
+                
             <?php foreach ($menu as $key => $options) : ?>
-                <li class="li"> <a href="<?= $options ?>"><?= $key?></a></li>
+                <li class="li"><a href="<?= $options ?>"><?= $key?></a></li>
             <?php endforeach; ?>
 
         </div>

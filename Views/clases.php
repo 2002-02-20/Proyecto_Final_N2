@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
 $select = new Usuarios;
-$allData = $select->selectRol();
+$allData = $select->selectRegisterTeacher();
 
 ?>
 
@@ -18,27 +18,41 @@ $allData = $select->selectRol();
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
 
-
 <section class="infoPage">
-    <div class="h3Permisos">
-    <h3>Permisos </h3>
+<div class="h3Permisos">
+    <h3>Clases </h3>
     </div>
-    <table id="myTable" class="table">
+
+<table id="myTable" class="table">
         <thead>
             <tr>
                 <th class="id">#</th>
-                <th>Email/Usuario</th>
-                <th>Permiso</th>
+                <th>Clases</th>
+                <th>Maestros</th>
+                <th>Alumnos</th>
                 <th>Accion</th>
             </tr>
         </thead>
         <tbody id="tableBody">
             <?php foreach ($allData as $key) : ?>
                 <tr>
-                    <td><?= $key['id'] ?></td>
-                    <td><?= $key['email'] ?></td>
-                    <td><?= $key['rol_nombre'] ?></td>
+                    <td><?= $key['id']  ?></td>
 
+                    <td><?php if (!isset($key['clases_nombre'])) : ?>
+                        <style>
+                            .red{
+                                color: red;
+                            }
+                        </style>
+                            <span class="red">Sin Registro</span>
+                        <?php else : ?>
+                            <?= $key['clases_nombre']?>
+
+                        <?php endif ?>
+                
+                    <td><?= $key['nombres'] . " " . $key['apellidos'] ?></td>
+                    <td><?= $key['clase_id'] ?></td>
+          
                     <td>
                             <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
                                 edit_square
@@ -49,56 +63,8 @@ $allData = $select->selectRol();
             <?php endforeach; ?>
         </tbody>
     </table>
-    
-<!-- Button trigger modal -->
-<div class="container mt-5">
-
-
-<!-- Modal  agregar-->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLabel">Editar Permisos</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <form action="../index.php?controller=UserController&action=permisosController" method="POST">
-
-                    <div class="mb-3">
-                    <label for="emailUsuario">Email del Usuario</label>
-                        <input type="email" id="emailUsuario" name="email" value="<?= $key['email'] ?>"  placeholder="<?= $key['email'] ?>" class="form-control" disabled>
-
-                    </div>
-
-                    <div class="selectInput">
-                        <select name="rol"  class="form-control">
-                            <option value="" disabled selected>Selecciona un rol</option>
-
-                            <option value="1">Admin</option>
-                            <option value="2">Maestro</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="btnGuardarCambios"  class="btn btn-primary" >Guardar Cambios</button>
-                    </div>
-
-                </form>
-
-
-            </div>
-        </div>
-
-    </div>
-
-
-</div>
-</div>
-</div>
-
 </section>
-
+    
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -106,8 +72,6 @@ $allData = $select->selectRol();
 
 <script>
     // Inicializa la tabla con DataTables
-
-
 
     $(document).ready(function() {
         $('#myTable').DataTable({
