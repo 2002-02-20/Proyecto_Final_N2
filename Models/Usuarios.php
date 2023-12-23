@@ -1,8 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Database.php';
-
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Controllers/UserController.php';
-
 
 
 class Usuarios
@@ -15,12 +13,14 @@ class Usuarios
         $this->conexion = $database->getConexion();
     }
 
+    
     #FUNCIONA
     public function register($email, $password, $rol_id)
     {
         $query = "INSERT INTO usuarios(`email`, `password`, `rol_id`) VALUES (?,?,?)";
         
-        try {
+        
+          try {
             $stm = $this->conexion->prepare($query);
             $stm->execute([$email, $password, $rol_id]);
 
@@ -31,13 +31,31 @@ class Usuarios
 
     }
 
-    public function registerTeacher($email, $nombres, $apellidos,  $direccion, $fechaNacimiento, $claseAsignada)
+    public function select($email){
+        $query = 'SELECT * FROM informacion WHERE email =?';
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute([$email]);
+            $result = $stm->fetch(PDO::FETCH_ASSOC);
+
+            return $result; 
+        }
+        catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+
+    #ACTUALIZADO FUNCIONA
+    public function registerTeacher($email,  $rol_id, $nombres, $apellidos, $hash, $direccion, $fechaNacimiento, $claseAsignada)
     {
-        $query = "INSERT INTO informacion(`email`, `nombres`, `apellidos`, `direccion`, `fecha_nacimiento`, `clase_id`) VALUES (?,?,?,?,?,?)"; //
+        $query = "INSERT INTO informacion(`email`, `rol_id`, `nombres`, `apellidos`, `password`, `direccion`, `fecha_nacimiento`, `clase_id`) VALUES (?,?,?,?,?,?,?,?)"; //
         
         try {
             $stm = $this->conexion->prepare($query);
-            $stm->execute([$email, $nombres, $apellidos,  $direccion, $fechaNacimiento, $claseAsignada]);
+            $stm->execute([$email,  $rol_id, $nombres, $apellidos, $hash, $direccion, $fechaNacimiento, $claseAsignada]);
 
             return true;
         } catch (PDOException $e) {
@@ -64,30 +82,32 @@ class Usuarios
 
     }
 
-    public function update($email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada)
+    public function update($email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada, $id)
     {
 
-        $query = "UPDATE `informacion` SET `email`=?, `nombres`= ?,`apellidos`=?,`direccion`=?, `fecha_nacimiento`=?, `clase_id`=?";
+        $query = "UPDATE `informacion` SET `email`=?, `nombres`= ?,`apellidos`=?,`direccion`=?, `fecha_nacimiento`=?, `clase_id`=? WHERE id=?";
 
         try {
             $stm = $this->conexion->prepare($query);
-            $stm->execute([$email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada]);
+            $stm->execute([$email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada, $id]);
+
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
 
     }
 
-    public function select($email)
+    #PENDIENTE 
+    public function selectJoin()
     {
-        $query = 'SELECT * FROM usuarios WHERE email = ?';
+        $query = 'SELECT informacion.*, clases.id AS clases_id, clases.clases AS clases_nombre FROM informacion JOIN clases ON clases.id = informacion.clase_id';
+
 
         try {
             $stm = $this->conexion->prepare($query);
-            $stm->execute([$email]);
+            $stm->execute();
 
-            $result = $stm->fetch(PDO::FETCH_ASSOC);
-
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
             return $result; 
         }
         catch (PDOException $e) {
@@ -100,7 +120,7 @@ class Usuarios
     #actualizar los permisos de usuarios //FUNCIONA
     public function permisos($rol_id, $email)
     {
-        $query = 'UPDATE `usuarios` SET `rol_id`=? WHERE email=?';
+        $query = 'UPDATE `informacion` SET `rol_id`=? WHERE email=?';
 
         try {
             $stm = $this->conexion->prepare($query);
@@ -113,6 +133,7 @@ class Usuarios
         }
 
     }
+
 
     public function delete($id)
     {

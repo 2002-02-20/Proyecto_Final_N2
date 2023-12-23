@@ -23,6 +23,8 @@ h3{
     padding: 10px 15px;
     border-radius: 7px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: white;
+
 }
 
 .inputEmail{
@@ -40,6 +42,14 @@ h3{
     width: 90%;
     height: 80%;
     padding: 10px 5px;
+}
+
+body{
+    background-color: #c1ba9f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 select{

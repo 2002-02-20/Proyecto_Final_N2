@@ -12,6 +12,15 @@ class UserController
         $this->conexion = $database->getConexion();
     }
 
+    public function index()
+    {
+        $a = new Usuarios();
+        $b = $a->selectRegisterTeacher();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/tabla.php';
+
+    }
+
+
     #FUNCIONA
     public function insertData()
     {
@@ -20,7 +29,7 @@ class UserController
         $rol_id =  $_POST['rol'];
         $auth = new Usuarios;
         $auth->register($email,  $hash, $rol_id);
-       # header('location: ../Views/tabla.php');
+       #header('location: ../Views/tabla.php');
 
     }
 
@@ -37,30 +46,39 @@ class UserController
             session_start();
             $_SESSION['userData'] =  $user;
             
-            header('location: ../Views/info.php');
+            header('location: ../index.php');
+            exit();
+
         } else {
-            header('location: ../Views/login.php');
+            #header('location: ../index.php');
 
         }
  
     }
     
-    #funciona
+    #funciona ACTUALIZADO 
     public function registerTeacher(){
+
         $email =  $_POST['email'];
+        $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
         $nombres =  $_POST['nombres'];
         $apellidos =  $_POST['apellidos'];
         $direccion =  $_POST['direccion'];
         $fechaNacimiento =  $_POST['fechaNacimiento'];
         $claseAsignada =  $_POST['claseAsignada'];
+        $rol_id = $_POST['rol']; 
+
+
 
         $usuarios= new Usuarios;
-        $usuarios->registerTeacher($email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada);
+        $usuarios->registerTeacher($email,  $rol_id, $nombres, $apellidos, $hash, $direccion, $fechaNacimiento, $claseAsignada);
         
-        header('location: ../Views/tabla.php' ); 
+        header('location:  index.php?controller=UserController&action=index');
     }
 
     public function update(){
+        $id = $_POST['id'];
         $email =  $_POST['email'];
         $nombres =  $_POST['nombres'];
         $apellidos =  $_POST['apellidos'];
@@ -69,26 +87,25 @@ class UserController
         $claseAsignada =  $_POST['claseAsignada'];
 
         $usuarios= new Usuarios;
-        $usuarios->update($email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada);
-    
+        $usuarios->update($email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada, $id);
+
+
+        header('location:  index.php?controller=UserController&action=index');
+
     }
 
-    public function delete(){
+    public function destroy() //Jairo
+    {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
 
             $usuario = new Usuarios;
-            $usuario->delete($id);
+            $usuario->delete($id, $usuario);
+
+            header('location:  index.php?controller=UserController&action=index');
         }
-}
-    /*
-    public function selectTeacher()
-    {
-        $email =  $_POST['email'];
-        $usuarios= new Usuarios;
-        $usuarios->selectRegisterTeacher($email);
     }
-    */
+    
 
     #actualizar los permisos de usuarios //FUNCIONA
     public function permisosController()
@@ -98,5 +115,18 @@ class UserController
         $usuarios= new Usuarios;
         $usuarios->permisos($rol_id, $email);
 
+       
+        #header('location: ../Views/permisos.php');
+        #exit();
+        print_r($usuarios); 
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header('location: ../index.php');
+        exit();
+
     }
 }
+

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../assets/login.css">
 </head>
 <body>
+    <!--DECIDIR COMO INCLUIMOS LAS VISTAS -->
     <section class="allBoxLogin">
         <img src="../assets/logo.jpg" alt="university_Icon" class="university_Icon">
         <section class="boxLogin">
@@ -33,7 +34,7 @@
                 <div class="buttonClass">
                     <button type="submit">Ingresar</button>
                 </div>
-                
+
             </form>
         </section>
     </section>
