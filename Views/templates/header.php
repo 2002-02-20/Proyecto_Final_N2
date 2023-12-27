@@ -1,3 +1,36 @@
+<?php
+session_start();
+
+if (isset($_SESSION['userData'])) {
+
+    $userData = $_SESSION['userData'];
+
+    $maestros  = ['Clases' => 'index.php?'];
+    $tipoMenu2 = ['MENU MAESTRO' => 'index.php?'];
+    $maestros1 = ['maestro'  => 'index.php?', 'Maestro' => 'index.php?'];
+    $navBArMaestros = ['Maestro' => 'index.php?'];
+    $admin = ['Permisos' => 'index.php?controller=UserController&action=selecRol', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => 'index.php?controller=UserController&action=materias'];
+
+    $admin1 = ['admin'  => 'index.php?', 'Administrador' => 'index.php?'];
+    $navBAr = ['Administrador' => 'index.php?'];
+    $tipoMenu1 = ['MENU ADMINISTRADOR' => 'index.php?'];
+
+    if ($userData['rol_id'] === 1) {
+        $menu = $admin;
+        $menu1 = $admin1;
+        $menu2 = $navBAr;
+        $tipoMenu = $tipoMenu1;
+    } else if ($userData['rol_id'] === 2) {
+        $menu = $maestros;
+        $menu1 = $maestros1;
+        $menu2 = $navBArMaestros;
+        $tipoMenu = $tipoMenu2;
+    }
+} else {
+    header('location: ../Views/login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,23 +56,24 @@
 </head>
 
 <body class="body">
-<nav class="green">
+    <nav class="green">
         <ul class="ulNav">
             <li id="menuHome">Home</li>
             <li><button class="btnAdministrador">
-            <?php foreach ($menu2 as $key => $options) : ?>
-                <p><?= $key ?></p>
-            <?php endforeach; ?>
-    
-            
-            <span class="material-symbols-outlined">
+                    <?php foreach ($menu2 as $key => $options) : ?>
+                        <p><?= $key ?></p>
+                    <?php endforeach; ?>
+
+
+                    <span class="material-symbols-outlined">
                         arrow_drop_down
-                    </span></button>
+                    </span>
+                </button>
                 <ul class="ulNavInteractive">
                     <li class="liPerfil"><span class="material-symbols-outlined">
                             account_circle
                         </span><a href="#" class="liPerfil">Perfil</a></li>
-                   
+
                     <li class="liLogout"><span class="material-symbols-outlined">
                             logout
                         </span><a href="../index.php?Controllers/UserController&action=logout" class="liLogout">Logout</a></li>

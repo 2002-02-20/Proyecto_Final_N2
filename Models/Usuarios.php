@@ -47,7 +47,22 @@ class Usuarios
 
     }
 
+    public function materiasA(){
+        $query = 'SELECT * FROM `clases` LEFT JOIN informacion ON informacion.clase_id = clases.id';
 
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute();
+            $result = $stm->fetch(PDO::FETCH_ASSOC);
+
+            return $result; 
+        }
+        catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+  
     #ACTUALIZADO FUNCIONA
     public function registerTeacher($email,  $rol_id, $nombres, $apellidos, $hash, $direccion, $fechaNacimiento, $claseAsignada)
     {
@@ -184,4 +199,6 @@ class Usuarios
         }
     }
 }
+
+
 

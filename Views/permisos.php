@@ -73,7 +73,7 @@ $allData = $select->selectRol();
                     </div>
 
                     <div class="selectInput">
-                        <select name="rol"  class="form-control">
+                        <select name="rol_id"  class="form-control">
                             <option value="" disabled selected>Selecciona un rol</option>
 
                             <option value="1">Admin</option>

@@ -1,7 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
 $select = new Usuarios;
-$allData = $select->selectRegisterTeacher();
+$allData = $select->materias();
+print_r($allData);
 
 ?>
 
@@ -36,9 +37,9 @@ $allData = $select->selectRegisterTeacher();
         <tbody id="tableBody">
             <?php foreach ($allData as $key) : ?>
                 <tr>
-                    <td><?= $key['id']  ?></td>
+                    <td><?= $key['email']  ?></td>
 
-                    <td><?php if (!isset($key['clases_nombre'])) : ?>
+                    <td><?php if (!isset($key['clases'])) : ?>
                         <style>
                             .red{
                                 color: red;
@@ -46,18 +47,17 @@ $allData = $select->selectRegisterTeacher();
                         </style>
                             <span class="red">Sin Registro</span>
                         <?php else : ?>
-                            <?= $key['clases_nombre']?>
+                            <?= $key['clases']?>
 
                         <?php endif ?>
                 
                     <td><?= $key['nombres'] . " " . $key['apellidos'] ?></td>
-                    <td><?= $key['clase_id'] ?></td>
+                    <td><?= $key['clases'] ?></td>
           
                     <td>
                             <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
                                 edit_square
                             </span>
-                   
                     </td>
                 </tr>
             <?php endforeach; ?>
