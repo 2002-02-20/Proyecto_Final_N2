@@ -14,39 +14,21 @@ class UserController
 
     public function index()
     {
-        $a = new Usuarios();
-        $b = $a->selectRegisterTeacher();
         require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/tabla.php';
-    }
-
-    public function selecRol()
-    {
-      /*   $select = new Usuarios();
-        $selectRol = $select->selectRol(); */
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/permisos.php';
-    }
-
-
-    public function materias()
-    {
-        $select = new Usuarios();
-        $selectClase = $select->materiasA();
-        print_r($selectClase);
-        #require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/clases.php';
 
     }
 
 
     #FUNCIONA
-    public function insertData()
+   /*  public function insertData()
     {
         $email =  $_POST['email'];
         $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $rol_id =  $_POST['rol'];
         $auth = new Usuarios;
         $auth->register($email,  $hash, $rol_id);
-    }
-
+    } 
+ */
 
 
     #FUCIONA
@@ -65,7 +47,6 @@ class UserController
             header('location: ../index.php');
         } else {
             header('location: ../Views/login.php');
-
         }
     }
 
@@ -75,7 +56,6 @@ class UserController
 
         $email =  $_POST['email'];
         $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
         $nombres =  $_POST['nombres'];
         $apellidos =  $_POST['apellidos'];
         $direccion =  $_POST['direccion'];
@@ -83,13 +63,14 @@ class UserController
         $claseAsignada =  $_POST['claseAsignada'];
         $rol_id = $_POST['rol'];
 
-
         $usuarios = new Usuarios;
         $usuarios->registerTeacher($email,  $rol_id, $nombres, $apellidos, $hash, $direccion, $fechaNacimiento, $claseAsignada);
+       
+        header('location:  index.php?controller=UserController&action=index'); 
 
-        header('location:  index.php?controller=UserController&action=index');
     }
 
+    #X METODO GET = ID 
     public function update()
     {
         $id = $_POST['id'];
@@ -108,20 +89,7 @@ class UserController
     }
 
 
-    #actualizar los permisos de usuarios //FUNCIONA
-    public function permisosController()
-    {
-
-        $email = $_POST['email'];
-        $rol_id =  $_POST['rol_id'];
-
-        $usuario = new Usuarios;
-        $usuario->permisos($rol_id, $email);
-
-        header('location:  index.php?controller=UserController&action=selecRol');
-    }
-
-    public function destroy() //Jairo
+    public function destroy()
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
@@ -137,9 +105,10 @@ class UserController
     {
         session_destroy();
         header('location: ../index.php');
-        exit();
     }
 }
 
-$permisos = new UserController();
-$a = $permisos->permisosController(1, 'fuqym@mailinator.com'); 
+/* 
+$usuarios = new Usuarios;
+$usuarios->registerTeacher('$email', 2,' $nombres',' $apellidos', '$hash', '$direccion',' $fechaNacimiento', '3');
+ */

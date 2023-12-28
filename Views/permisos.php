@@ -1,8 +1,11 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
-$select = new Usuarios;
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Permisos.php';
+$select = new Permisos;
 $allData = $select->selectRol();
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
+$a = new Usuarios;
+$roles = $a->roles();
 ?>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -21,7 +24,7 @@ $allData = $select->selectRol();
 
 <section class="infoPage">
     <div class="h3Permisos">
-    <h3>Permisos </h3>
+        <h3>Permisos </h3>
     </div>
     <table id="myTable" class="table">
         <thead>
@@ -37,65 +40,91 @@ $allData = $select->selectRol();
                 <tr>
                     <td><?= $key['id'] ?></td>
                     <td><?= $key['email'] ?></td>
-                    <td><?= $key['rol_nombre'] ?></td>
+                    <td><?php if ($key['rol_id'] === 1) : ?>
+                            <style>
+                                .color {
+                                    background-color: #FFCF28;
+                                    padding: 3px 5px;
+                                    border-radius: 5px;
+
+                                }
+                            </style>
+                            <span class="color"><?= $key['rol_nombre'] ?></span>
+                        <?php elseif ($key['rol_id'] === 2) : ?>
+                            <style>
+                                .colorA {
+                                    background-color: #77CAF7;
+                                    padding: 3px 5px;
+                                    border-radius: 5px;
+                                }
+                            </style>
+                            <span class="colorA"><?= $key['rol_nombre'] ?></span>
+                        <?php endif ?>
+                    </td>
 
                     <td>
-                            <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
-                                edit_square
-                            </span>
-                   
+                        <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
+                            edit_square
+                        </span>
+
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    
-<!-- Button trigger modal -->
-<div class="container mt-5">
+
+    <!-- Button trigger modal -->
+    <div class="container mt-5">
 
 
-<!-- Modal  agregar-->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLabel">Editar Permisos</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- Modal  agregar-->
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLabel">Editar Permisos</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form action="../index.php?controller=PermisosController&action=permisosController" method="POST">
+
+                            <div class="mb-3">
+                                <label for="emailUsuario">Email del Usuario</label>
+
+                                <input type="email" id="emailUsuario" name="email" value="<?= $key['id'] ?>" placeholder="<?= $key['id'] ?>" class="form-control">
+
+                            </div>
+
+
+                            <div class="selectInput">
+                                <select name="rol_id" class="form-control">
+                                    
+                                    <option value="" disabled selected>Selecciona un rol</option>
+                                    <?php foreach ($roles as $key) : ?>
+
+                                    <option value="<?=$key['id']?>"><?=$key['rol']?></option>
+ 
+                                    <?php endforeach; ?>
+
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" id="btnGuardarCambios" class="btn btn-primary">Guardar Cambios</button>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                </div>
+
             </div>
-            <div class="modal-body">
-
-                <form action="../index.php?controller=UserController&action=permisosController" method="POST">
-
-                    <div class="mb-3">
-                    <label for="emailUsuario">Email del Usuario</label>
-                        <input type="email" id="emailUsuario" name="email" value="<?= $key['email'] ?>"  placeholder="<?= $key['email'] ?>" class="form-control" disabled>
-
-                    </div>
-
-                    <div class="selectInput">
-                        <select name="rol_id"  class="form-control">
-                            <option value="" disabled selected>Selecciona un rol</option>
-
-                            <option value="1">Admin</option>
-                            <option value="2">Maestro</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="btnGuardarCambios"  class="btn btn-primary" >Guardar Cambios</button>
-                    </div>
-
-                </form>
 
 
-            </div>
         </div>
-
     </div>
-
-
-</div>
-</div>
-</div>
+    </div>
 
 </section>
 
@@ -111,7 +140,7 @@ $allData = $select->selectRol();
 
     $(document).ready(function() {
         $('#myTable').DataTable({
-            lengthMenu: [10, 12],
+            lengthMenu: [5, 8],
             searching: true,
             pageLength: 5
         });

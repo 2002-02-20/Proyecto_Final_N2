@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/login.css">
 </head>
+
 <body>
     <!--DECIDIR COMO INCLUIMOS LAS VISTAS -->
     <section class="allBoxLogin">
@@ -42,13 +43,13 @@
     <section class="infoToPass">
         <h4 class="infoAcceso">Información Acceso</h4>
         <div class="infoAdminMaestro">
-        <p><strong>Admin</strong></p>
-        <p>User:derek@gmail.com</p>
-        <p>Pass:1234</p>
+            <p><strong>Admin</strong></p>
+            <p>User:derek@gmail.com</p>
+            <p>Pass:1234</p>
 
-        <p><strong>Maestros</strong></p>
-        <p>User:juan@gmail.com</p>
-        <p>Pass:1234</p>
+            <p><strong>Maestros</strong></p>
+            <p>User:juan@gmail.com</p>
+            <p>Pass:1234</p>
         </div>
     </section>
 </body>

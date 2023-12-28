@@ -111,5 +111,11 @@ li{
     padding-bottom: 10px;
     border-bottom: solid 1px #b9b9b9;
     margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
 
+}
+
+#iconsModel{
+    display: flex;
 }

@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
+
 $select = new Usuarios;
 $allData = $select->selectRegisterTeacher();
 
@@ -14,88 +15,12 @@ $allData = $select->selectRegisterTeacher();
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
-<div class="btnModels">
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="exampleModalLabel">Editar Maestro</h2>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <form action="../index.php?controller=UserController&action=update" method="POST">
-                        <div class="mb-3">
-                            <label for="perfil"><strong>Número del Perfil</strong></label>
-                            <input type="number" class="form-control" id="perfil" name="id" placeholder="Editar Perfil">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email"><strong>Correo Electronico</strong></label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Ingresa Email">
-
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="nombres"><strong>Nombre(s)</strong></label><br>
-                            <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Ingresa nombre(s)">
-
-                        </div>
-
-                        <div class="mb-3">
-
-                            <label for="apellidos"><strong>Apellido(s)</strong></label>
-                            <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingresa apellido(s)">
-                        </div>
-
-                        <div class="mb-3">
-
-                            <label for="direccion"><strong>Dirección</strong></label>
-                            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingresa la dirección">
-                        </div>
-
-                        <div class="mb-3">
-
-                            <label for="fechaNacimiento"><strong>Fecha de Nacimiento</strong></label>
-                            <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="mm/dd/yy">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="telefono"><strong>Clase Asignada</strong></label>
-                            <select class="form-control" name="claseAsignada">
-                                <option value="">Seleccion Clases</option>
-                                <option value="1">Matematicas</option>
-                                <option value="2">Física</option>
-                                <option value="3">Ciencias Naturales</option>
-                                <option value="4">Química</option>
-
-                            </select>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btnCrear">Guardar Cambios</button>
-                </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-</div>
 
 <section class="infoPage mt-3">
     <div class="infoMaestrosBtn">
         <h2>Información de Maestros</h2>
         <div class="btnModels">
-
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalLong1">
-                Editar Perfil
-            </button>
             <!-- Tu modal de editar perfil aquí -->
-
 
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
                 Agregar Usuario
@@ -192,13 +117,13 @@ $allData = $select->selectRegisterTeacher();
     <table id="myTable" class="table">
         <thead>
             <tr>
-                <th class="id">#</th>
+                <th class="id_num">#</th>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Dirección</th>
                 <th>Fec. de Nacimiento</th>
                 <th>Clase Asignada</th>
-                <th>Borrar</th>
+                <th class="editar">Editar</th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -210,18 +135,99 @@ $allData = $select->selectRegisterTeacher();
                     <td><?= $key['direccion'] ?></td>
                     <td><?= $key['fecha_nacimiento'] ?></td>
                     <td><?php if (!isset($key['clases_nombre'])) : ?>
-                        <style>
-                            .red{
-                                color: red;
-                            }
-                        </style>
+                            <style>
+                                .red {
+                                    background-color: #FFCF28;
+                                    padding: 3px 5px;
+                                    border-radius: 5px;
+
+                                }
+                            </style>
                             <span class="red">Sin Registro</span>
                         <?php else : ?>
-                            <?= $key['clases_nombre']?>
+                            <?= $key['clases_nombre'] ?>
 
                         <?php endif ?>
                     </td>
-                    <td>
+                    <td id="iconsModel">
+                        <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#editarPerfil">
+                            edit_square
+                        </span>
+
+
+                        <div class="btnModels">
+                            <!-- Modal -->
+                            <div class="modal fade" id="editarPerfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title" id="exampleModalLabel">Editar Maestro</h2>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <form action="../index.php?controller=UserController&action=update" method="POST">
+                                                <div class="mb-3">
+                                                    <label for="perfil"><strong>Número del Perfil</strong></label>
+                                                    <input type="number" class="form-control" id="perfil" name="id" placeholder="<?= $key['id'] ?>">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="email"><strong>Correo Electronico</strong></label>
+                                                    <input type="text" class="form-control" id="email" name="email" placeholder="<?= $key['email'] ?>">
+
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="nombres"><strong>Nombre(s)</strong></label><br>
+                                                    <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Ingresa nombre(s)">
+
+                                                </div>
+
+                                                <div class="mb-3">
+
+                                                    <label for="apellidos"><strong>Apellido(s)</strong></label>
+                                                    <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingresa apellido(s)">
+                                                </div>
+
+                                                <div class="mb-3">
+
+                                                    <label for="direccion"><strong>Dirección</strong></label>
+                                                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingresa la dirección">
+                                                </div>
+
+                                                <div class="mb-3">
+
+                                                    <label for="fechaNacimiento"><strong>Fecha de Nacimiento</strong></label>
+                                                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" placeholder="mm/dd/yy">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="telefono"><strong>Clase Asignada</strong></label>
+                                                    <select class="form-control" name="claseAsignada">
+                                                        <option value="">Seleccion Clases</option>
+                                                        <option value="1">Matematicas</option>
+                                                        <option value="2">Física</option>
+                                                        <option value="3">Ciencias Naturales</option>
+                                                        <option value="4">Química</option>
+
+                                                    </select>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary" id="btnCrear">Guardar Cambios</button>
+                                        </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        </div>
+
+
                         <a href="../index.php?controller=UserController&action=destroy&id=<?= $key['id'] ?>">
                             <span class="material-symbols-outlined">delete</span>
                         </a>
@@ -246,7 +252,7 @@ $allData = $select->selectRegisterTeacher();
 
     $(document).ready(function() {
         $('#myTable').DataTable({
-            lengthMenu: [2, 3],
+            lengthMenu: [4, 5],
             searching: true,
             pageLength: 3
         });

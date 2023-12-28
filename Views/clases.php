@@ -1,8 +1,26 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
-$select = new Usuarios;
-$allData = $select->materias();
-print_r($allData);
+/* require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Controllers/UserController.php'; */
+
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Clases.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Controllers/ClasesController.php';
+
+
+/* $select = new Usuarios;
+$allData = $select->materiasA();
+
+$nullMaestro = new Usuarios;
+$null = $nullMaestro->traerMaestroModel();
+ */
+
+
+$select = new Clases;
+$allData = $select->materiasA();
+
+$nullMaestro = new Clases;
+$null = $nullMaestro->traerMaestroModel();
+
 
 ?>
 
@@ -20,11 +38,71 @@ print_r($allData);
 
 
 <section class="infoPage">
-<div class="h3Permisos">
-    <h3>Clases </h3>
+    <div class="h3Permisos">
+        <h3>Clases </h3>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
+            Agregar Clase
+        </button>
+
     </div>
 
-<table id="myTable" class="table">
+
+    <!-- Modal  agregar-->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">Agregar Clase</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="../index.php?controller=ClasesController&action=agregarMateria" method="POST">
+
+                        <div class="mb-3">
+                            <label for="nombreMateria"><strong>Nombre de la Materia</strong></label>
+                            <input type="text" class="form-control" id="nombreMateria" name="nombreMateria" placeholder="Nombre de la Materia">
+
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="nombreMateria"><strong>Maestro disponible para la Clase</strong></label>
+
+                         
+
+                            <select name="nombre" class="form-control">
+                                <option value="" disabled selected>Sin Asignar</option>
+                                <?php foreach ($null as $nombreMaestro) : ?>
+
+                                    <option value="<?= $nombreMaestro['id'] ?>"><?= $nombreMaestro['nombres'] ?> <?= $nombreMaestro['apellidos'] ?></option>
+                                <?php endforeach; ?>
+
+
+                            </select>
+                        </div>
+
+                        
+                </div>
+                <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" id="btnCrear">Crear</button>
+                            </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+    <table id="myTable" class="table">
         <thead>
             <tr>
                 <th class="id">#</th>
@@ -37,34 +115,89 @@ print_r($allData);
         <tbody id="tableBody">
             <?php foreach ($allData as $key) : ?>
                 <tr>
-                    <td><?= $key['email']  ?></td>
+                    <td><?= $key['num_clases'] ?></td>
 
                     <td><?php if (!isset($key['clases'])) : ?>
-                        <style>
-                            .red{
-                                color: red;
-                            }
-                        </style>
+                            <style>
+                                .red {
+                                    color: red;
+                                }
+                            </style>
                             <span class="red">Sin Registro</span>
                         <?php else : ?>
-                            <?= $key['clases']?>
+                            <?= $key['clases'] ?>
 
                         <?php endif ?>
-                
+
                     <td><?= $key['nombres'] . " " . $key['apellidos'] ?></td>
                     <td><?= $key['clases'] ?></td>
-          
+
                     <td>
-                            <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
-                                edit_square
-                            </span>
+                        <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#editClase">
+                            edit_square
+                        </span>
+                        <a href="../index.php?controller=ClasesController&action=destroy&id=<?= $key['num_clases'] ?>">
+                            <span class="material-symbols-outlined">delete</span>
+                        </a>
+
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 </section>
-    
+
+
+<!-- Modal  agregar-->
+<div class="modal fade" id="editClase" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Editar Clase</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form action="" method="POST">
+
+                    <div class="mb-3">
+                        <label for="materia">Nombre de la Materia</label>
+
+                        <input type="text" id="materia" name="materia" placeholder="Nombre de la Materia" class="form-control">
+                    </div>
+
+
+                    <!--     EDITAR -->
+                    <div class="selectInput">
+                        <label for="profesor">Maestro Asignado</label>
+
+                        <select name="rol_id" class="form-control">
+                            <option value="" disabled selected>Selecciona un rol</option>
+
+                            <option value="1">Admin</option>
+                            <option value="2">Maestro</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="btnGuardarCambios" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+</div>
+</div>
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -75,7 +208,7 @@ print_r($allData);
 
     $(document).ready(function() {
         $('#myTable').DataTable({
-            lengthMenu: [10, 12],
+            lengthMenu: [5, 7],
             searching: true,
             pageLength: 5
         });

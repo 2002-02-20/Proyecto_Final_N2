@@ -9,7 +9,8 @@ if (isset($_SESSION['userData'])) {
     $tipoMenu2 = ['MENU MAESTRO' => 'index.php?'];
     $maestros1 = ['maestro'  => 'index.php?', 'Maestro' => 'index.php?'];
     $navBArMaestros = ['Maestro' => 'index.php?'];
-    $admin = ['Permisos' => 'index.php?controller=UserController&action=selecRol', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => 'index.php?controller=UserController&action=materias'];
+
+    $admin = ['Permisos' => 'index.php?controller=PermisosController&action=selecRol', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => 'index.php?controller=ClasesController&action=materias'];
 
     $admin1 = ['admin'  => 'index.php?', 'Administrador' => 'index.php?'];
     $navBAr = ['Administrador' => 'index.php?'];
@@ -50,7 +51,6 @@ if (isset($_SESSION['userData'])) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-    <script src="/JS//interactiveMenu.js" defer></script>
 
 </head>
 </head>
