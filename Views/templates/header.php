@@ -5,7 +5,7 @@ if (isset($_SESSION['userData'])) {
 
     $userData = $_SESSION['userData'];
 
-    $maestros  = ['Clases' => 'index.php?'];
+    $maestros  = ['Clases' => 'index.php?controller=MaestroController&action=index'];
     $tipoMenu2 = ['MENU MAESTRO' => 'index.php?'];
     $maestros1 = ['maestro'  => 'index.php?', 'Maestro' => 'index.php?'];
     $navBArMaestros = ['Maestro' => 'index.php?'];

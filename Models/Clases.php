@@ -13,28 +13,44 @@ class Clases
         $this->conexion = $database->getConexion();
     }
 
+    public function clases()
+    {
+        $query = 'SELECT * FROM clases';
 
-        #TERMINAR LA FUNCION
-        public function agregarMateriaModel($clases)
-        {
-    
-            $query = 'INSERT INTO `clases` (`clases`) VALUES (?)';
-    
-            try {
-                $stm = $this->conexion->prepare($query);
-                $stm->execute([$clases]);
-    
-    /*             if ($user_id) {
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+    }
+
+    #TERMINAR LA FUNCION
+    public function agregarMateriaModel($clases)
+    {
+
+        $query = 'INSERT INTO `clases` (`clases`) VALUES (?)';
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute([$clases]);
+
+            /*             if ($user_id) {
                     $last_id = $this->conexion->lastInsertId();
                     $this->asignMateria($last_id, $user_id);
                 }
-     */            return true;
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-            }
+     */
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
+    }
 
-        
+
     public function materiasA()
     {
         $query = 'SELECT clases.id AS num_clases, clases. clases, informacion.*
@@ -52,21 +68,21 @@ class Clases
         }
     }
 
-      #TEMRINARL LA FUNCION 
-      public function traerMaestroModel()
-      {
-          $query = "SELECT informacion.id, informacion.nombres ,informacion.apellidos, informacion.clase_id FROM informacion WHERE rol_id = 2 and clase_id is null";
-          try {
-              $stm = $this->conexion->prepare($query);
-              $stm->execute();
-              $rs = $stm->fetchAll(PDO::FETCH_ASSOC);
-              return $rs;
-          } catch (PDOException $e) {
-              echo $e->getMessage();
-          }
-      }
+    #TEMRINARL LA FUNCION 
+    public function traerMaestroModel()
+    {
+        $query = "SELECT informacion.id, informacion.nombres ,informacion.apellidos, informacion.clase_id FROM informacion WHERE rol_id = 2 and clase_id is null";
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute();
+            $rs = $stm->fetchAll(PDO::FETCH_ASSOC);
+            return $rs;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 
-      
+
 
     public function deleteClass($id)
     {
@@ -79,5 +95,4 @@ class Clases
             echo $e->getMessage();
         }
     }
-
 }

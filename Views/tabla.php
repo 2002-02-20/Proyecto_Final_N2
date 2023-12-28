@@ -1,8 +1,15 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Clases.php';
 
 $select = new Usuarios;
 $allData = $select->selectRegisterTeacher();
+
+$a = new Usuarios;
+$roles = $a->roles();
+
+$clases = new Clases;
+$nom_clases = $clases->clases();
 
 ?>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -79,10 +86,12 @@ $allData = $select->selectRegisterTeacher();
                                     <div class="mb-3">
                                         <select name="claseAsignada" class="form-control">
                                             <option value="" disabled selected>Seleccion Clases</option>
-                                            <option value="1">Matematicas</option>
-                                            <option value="2">Física</option>
-                                            <option value="3">Ciencias Naturales</option>
-                                            <option value="4">Química</option>
+                                            <?php foreach ($nom_clases as $key) : ?>
+
+                                                <option value="<?= $key['id'] ?>"><?= $key['clases'] ?></option>
+
+                                            <?php endforeach; ?>
+
 
                                         </select>
                                     </div>
@@ -90,8 +99,14 @@ $allData = $select->selectRegisterTeacher();
                                     <div class="mb-3">
                                         <select name="rol" class="form-control">
                                             <option value="" disabled selected>Selecciona el Rol</option>
-                                            <option value="1">Administrado</option>
-                                            <option value="2">Maestro</option>
+                                            <?php foreach ($roles as $key) : ?>
+
+                                                <option value="<?= $key['id'] ?>"><?= $key['rol'] ?></option>
+
+                                            <?php endforeach; ?>
+
+
+
                                         </select>
                                     </div>
 
