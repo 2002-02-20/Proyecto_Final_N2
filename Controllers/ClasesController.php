@@ -37,6 +37,18 @@ class ClasesController
 
     }
 
+    public function updateClases()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $nombre_clase = $_POST['materia']; 
+
+            $update = new Clases;
+            $clasesUpdate = $update->updateClaseController($nombre_clase, $id); 
+            header('location:  index.php?controller=ClasesController&action=index');
+
+        }
+    }
 
     public function destroy() 
     {

@@ -1,18 +1,8 @@
 <?php
-/* require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Controllers/UserController.php'; */
-
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Clases.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Controllers/ClasesController.php';
 
-
-/* $select = new Usuarios;
-$allData = $select->materiasA();
-
-$nullMaestro = new Usuarios;
-$null = $nullMaestro->traerMaestroModel();
- */
 
 
 $select = new Clases;
@@ -27,6 +17,7 @@ $null = $nullMaestro->traerMaestroModel();
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <link rel="stylesheet" href="../assets/tabla.css">
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +34,6 @@ $null = $nullMaestro->traerMaestroModel();
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
             Agregar Clase
         </button>
-
     </div>
 
 
@@ -69,7 +59,7 @@ $null = $nullMaestro->traerMaestroModel();
                         <div class="mb-3">
                             <label for="nombreMateria"><strong>Maestro disponible para la Clase</strong></label>
 
-                         
+
 
                             <select name="nombre" class="form-control">
                                 <option value="" disabled selected>Sin Asignar</option>
@@ -82,11 +72,11 @@ $null = $nullMaestro->traerMaestroModel();
                             </select>
                         </div>
 
-                        
+
                 </div>
                 <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" id="btnCrear">Crear</button>
-                            </div>
+                    <button type="submit" class="btn btn-primary" id="btnCrear">Crear</button>
+                </div>
                 </form>
 
             </div>
@@ -129,7 +119,22 @@ $null = $nullMaestro->traerMaestroModel();
 
                         <?php endif ?>
 
-                    <td><?= $key['nombres'] . " " . $key['apellidos'] ?></td>
+                    <td>
+                        <?php if (!isset($key['nombres'])) : ?>
+                            <style>
+                                .red {
+                                    background-color: #FFCF28;
+                                    padding: 3px 5px;
+                                    border-radius: 5px;
+                                }
+                            </style>
+                            <span class="red">Sin Asignación</span>
+                        <?php else : ?>
+                            <?= $key['nombres'] . " " . $key['apellidos'] ?>
+
+                        <?php endif ?>
+
+                    </td>
                     <td><?= $key['clases'] ?></td>
 
                     <td>
@@ -137,6 +142,8 @@ $null = $nullMaestro->traerMaestroModel();
                             edit_square
                         </span>
                         <a href="../index.php?controller=ClasesController&action=destroy&id=<?= $key['num_clases'] ?>">
+                        
+
                             <span class="material-symbols-outlined">delete</span>
                         </a>
 
@@ -158,12 +165,14 @@ $null = $nullMaestro->traerMaestroModel();
             </div>
             <div class="modal-body">
 
-                <form action="" method="POST">
+                <form action="../index.php?controller=ClasesController&action=updateClases&id=<?= $key['num_clases'] ?>" method="POST">
+
 
                     <div class="mb-3">
                         <label for="materia">Nombre de la Materia</label>
 
                         <input type="text" id="materia" name="materia" placeholder="Nombre de la Materia" class="form-control">
+                        <input type="text" placeholder="<?= $key['num_clases'] ?>">
                     </div>
 
 
@@ -174,8 +183,14 @@ $null = $nullMaestro->traerMaestroModel();
                         <select name="rol_id" class="form-control">
                             <option value="" disabled selected>Selecciona un rol</option>
 
-                            <option value="1">Admin</option>
-                            <option value="2">Maestro</option>
+                            <?php foreach ($allData as $key) : ?>
+
+                                <?php if (isset($key['nombres'])) : ?>
+                                    <option value="<?= $key['id'] ?>"><?= $key['nombres'] ?> <?= $key['apellidos'] ?></option>
+
+                                <?php endif ?>
+                            <?php endforeach; ?>
+
                         </select>
                     </div>
                     <div class="modal-footer">

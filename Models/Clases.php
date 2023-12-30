@@ -82,6 +82,20 @@ class Clases
         }
     }
 
+    public function updateClaseController($nombre_clase, $id)
+    {
+        $query = 'UPDATE `clases` SET clases = ? WHERE id=?';
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute([$nombre_clase, $id]);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+
+    }
+
 
 
     public function deleteClass($id)

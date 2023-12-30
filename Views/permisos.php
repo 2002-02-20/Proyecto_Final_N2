@@ -36,11 +36,11 @@ $roles = $a->roles();
             </tr>
         </thead>
         <tbody id="tableBody">
-            <?php foreach ($allData as $key) : ?>
+            <?php foreach ($allData as $keyData) : ?>
                 <tr>
-                    <td><?= $key['id'] ?></td>
-                    <td><?= $key['email'] ?></td>
-                    <td><?php if ($key['rol_id'] === 1) : ?>
+                    <td><?= $keyData['id'] ?></td>
+                    <td><?= $keyData['email'] ?></td>
+                    <td><?php if ($keyData['rol_id'] === 1) : ?>
                             <style>
                                 .color {
                                     background-color: #FFCF28;
@@ -49,8 +49,8 @@ $roles = $a->roles();
 
                                 }
                             </style>
-                            <span class="color"><?= $key['rol_nombre'] ?></span>
-                        <?php elseif ($key['rol_id'] === 2) : ?>
+                            <span class="color"><?= $keyData['rol_nombre'] ?></span>
+                        <?php elseif ($keyData['rol_id'] === 2) : ?>
                             <style>
                                 .colorA {
                                     background-color: #77CAF7;
@@ -58,7 +58,7 @@ $roles = $a->roles();
                                     border-radius: 5px;
                                 }
                             </style>
-                            <span class="colorA"><?= $key['rol_nombre'] ?></span>
+                            <span class="colorA"><?= $keyData['rol_nombre'] ?></span>
                         <?php endif ?>
                     </td>
 
@@ -66,65 +66,65 @@ $roles = $a->roles();
                         <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
                             edit_square
                         </span>
-
                     </td>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
 
-    <!-- Button trigger modal -->
-    <div class="container mt-5">
+                <!-- Button trigger modal -->
+                <div class="container mt-5">
 
 
-        <!-- Modal  agregar-->
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="exampleModalLabel">Editar Permisos</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+                    <!-- Modal  agregar-->
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="exampleModalLabel">Editar Permisos</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
 
-                        <form action="../index.php?controller=PermisosController&action=permisosController" method="POST">
+                                    <form action="../index.php?controller=PermisosController&action=permisosController" method="POST">
 
-                            <div class="mb-3">
-                                <label for="emailUsuario">Email del Usuario</label>
+                                        <div class="mb-3">
+                                            <label for="emailUsuario">Email del Usuario</label>
 
-                                <input type="email" id="emailUsuario" name="email" value="<?= $key['id'] ?>" placeholder="<?= $key['id'] ?>" class="form-control">
+                                            <input type="email" id="emailUsuario" name="email" placeholder="<?= $keyData['id'] ?>" class="form-control">
+                                        </div>
 
+
+                                        <div class="selectInput">
+                                            <select name="rol_id" class="form-control">
+
+                                                <option value="" disabled selected>Selecciona un rol</option>
+                                                <?php foreach ($roles as $key_rol) : ?>
+
+                                                    <option value="<?= $key_rol['id'] ?>"><?= $key_rol['rol'] ?></option>
+
+                                                <?php endforeach; ?>
+
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" id="btnGuardarCambios" class="btn btn-primary">Guardar Cambios</button>
+                                        </div>
+
+                                    </form>
+
+
+                                </div>
                             </div>
 
-
-                            <div class="selectInput">
-                                <select name="rol_id" class="form-control">
-                                    
-                                    <option value="" disabled selected>Selecciona un rol</option>
-                                    <?php foreach ($roles as $key) : ?>
-
-                                    <option value="<?=$key['id']?>"><?=$key['rol']?></option>
- 
-                                    <?php endforeach; ?>
-
-                                </select>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" id="btnGuardarCambios" class="btn btn-primary">Guardar Cambios</button>
-                            </div>
-
-                        </form>
+                        </div>
 
 
                     </div>
                 </div>
+                </div>
 
-            </div>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
-
-        </div>
-    </div>
-    </div>
 
 </section>
 

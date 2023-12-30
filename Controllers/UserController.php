@@ -19,6 +19,11 @@ class UserController
     }
 
 
+    public function dashboard()
+    {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/dashboard.php';
+
+    }
     #FUNCIONA
    /*  public function insertData()
     {
@@ -104,11 +109,8 @@ class UserController
     public function logout()
     {
         session_destroy();
-        header('location: ../index.php');
+        header('location: ../Views/login.php');
+
     }
 }
 
-/* 
-$usuarios = new Usuarios;
-$usuarios->registerTeacher('$email', 2,' $nombres',' $apellidos', '$hash', '$direccion',' $fechaNacimiento', '3');
- */

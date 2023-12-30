@@ -35,7 +35,7 @@
         <div class="sectionPerfil">
 
             <?php foreach ($tipoMenu as $key => $options) : ?>
-            <p ><?= $key ?></p>
+            <p><?= $key ?></p>
             <?php endforeach; ?>
 
                 

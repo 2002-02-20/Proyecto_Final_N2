@@ -6,15 +6,15 @@ if (isset($_SESSION['userData'])) {
     $userData = $_SESSION['userData'];
 
     $maestros  = ['Clases' => 'index.php?controller=MaestroController&action=index'];
-    $tipoMenu2 = ['MENU MAESTRO' => 'index.php?'];
+    $tipoMenu2 = ['MENU MAESTRO' => 'index.php?controller=UserController&action=dashboard'];
     $maestros1 = ['maestro'  => 'index.php?', 'Maestro' => 'index.php?'];
-    $navBArMaestros = ['Maestro' => 'index.php?'];
+    $navBArMaestros = ['Maestro' => ''];
 
     $admin = ['Permisos' => 'index.php?controller=PermisosController&action=selecRol', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => 'index.php?controller=ClasesController&action=materias'];
 
     $admin1 = ['admin'  => 'index.php?', 'Administrador' => 'index.php?'];
-    $navBAr = ['Administrador' => 'index.php?'];
-    $tipoMenu1 = ['MENU ADMINISTRADOR' => 'index.php?'];
+    $navBAr = ['Administrador' => 'index.php?controller=UserController&action=logout'];
+    $tipoMenu1 = ['MENU ADMINISTRADOR' => 'index.php?controller=UserController&action=dashboard'];
 
     if ($userData['rol_id'] === 1) {
         $menu = $admin;
@@ -52,6 +52,8 @@ if (isset($_SESSION['userData'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
+
+
 </head>
 </head>
 
@@ -76,7 +78,7 @@ if (isset($_SESSION['userData'])) {
 
                     <li class="liLogout"><span class="material-symbols-outlined">
                             logout
-                        </span><a href="../index.php?Controllers/UserController&action=logout" class="liLogout">Logout</a></li>
+                        </span><a href="index.php?controller=UserController&action=logout" class="liLogout">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -86,6 +88,7 @@ if (isset($_SESSION['userData'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
 </body>
 
 </html>

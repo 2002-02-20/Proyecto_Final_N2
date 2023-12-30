@@ -221,10 +221,12 @@ $nom_clases = $clases->clases();
                                                     <label for="telefono"><strong>Clase Asignada</strong></label>
                                                     <select class="form-control" name="claseAsignada">
                                                         <option value="">Seleccion Clases</option>
-                                                        <option value="1">Matematicas</option>
-                                                        <option value="2">Física</option>
-                                                        <option value="3">Ciencias Naturales</option>
-                                                        <option value="4">Química</option>
+                                                        <?php foreach ($nom_clases as $key_clases) : ?>
+
+                                                            <option value="<?= $key_clases['id'] ?>"><?= $key_clases['clases'] ?></option>
+
+                                                        <?php endforeach; ?>
+
 
                                                     </select>
                                                 </div>
@@ -251,6 +253,7 @@ $nom_clases = $clases->clases();
             <?php endforeach; ?>
         </tbody>
     </table>
+    
 </section>
 </div>
 
