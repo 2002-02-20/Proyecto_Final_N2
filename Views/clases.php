@@ -4,13 +4,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Clases.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Controllers/ClasesController.php';
 
 
-
 $select = new Clases;
 $allData = $select->materiasA();
 
 $nullMaestro = new Clases;
 $null = $nullMaestro->traerMaestroModel();
-
 
 ?>
 
@@ -28,7 +26,7 @@ $null = $nullMaestro->traerMaestroModel();
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 
 
-<section class="infoPage">
+<section class="infoPage mt-3">
     <div class="h3Permisos">
         <h3>Clases </h3>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
@@ -55,11 +53,8 @@ $null = $nullMaestro->traerMaestroModel();
 
                         </div>
 
-
                         <div class="mb-3">
                             <label for="nombreMateria"><strong>Maestro disponible para la Clase</strong></label>
-
-
 
                             <select name="nombre" class="form-control">
                                 <option value="" disabled selected>Sin Asignar</option>
@@ -67,7 +62,6 @@ $null = $nullMaestro->traerMaestroModel();
 
                                     <option value="<?= $nombreMaestro['id'] ?>"><?= $nombreMaestro['nombres'] ?> <?= $nombreMaestro['apellidos'] ?></option>
                                 <?php endforeach; ?>
-
 
                             </select>
                         </div>
@@ -103,11 +97,11 @@ $null = $nullMaestro->traerMaestroModel();
             </tr>
         </thead>
         <tbody id="tableBody">
-            <?php foreach ($allData as $key) : ?>
+            <?php foreach ($allData as $key_clases) : ?>
                 <tr>
-                    <td><?= $key['num_clases'] ?></td>
+                    <td><?= $key_clases['num_clases'] ?></td>
 
-                    <td><?php if (!isset($key['clases'])) : ?>
+                    <td><?php if (!isset($key_clases['clases'])) : ?>
                             <style>
                                 .red {
                                     color: red;
@@ -115,12 +109,12 @@ $null = $nullMaestro->traerMaestroModel();
                             </style>
                             <span class="red">Sin Registro</span>
                         <?php else : ?>
-                            <?= $key['clases'] ?>
+                            <?= $key_clases['clases'] ?>
 
                         <?php endif ?>
 
                     <td>
-                        <?php if (!isset($key['nombres'])) : ?>
+                        <?php if (!isset($key_clases['nombres'])) : ?>
                             <style>
                                 .red {
                                     background-color: #FFCF28;
@@ -130,33 +124,28 @@ $null = $nullMaestro->traerMaestroModel();
                             </style>
                             <span class="red">Sin Asignación</span>
                         <?php else : ?>
-                            <?= $key['nombres'] . " " . $key['apellidos'] ?>
+                            <?= $key_clases['nombres'] . " " . $key_clases['apellidos'] ?>
 
                         <?php endif ?>
 
                     </td>
-                    <td><?= $key['clases'] ?></td>
-
+                    <td><?= $key_clases['clases'] ?></td>
                     <td>
-                        <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#editClase">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#editClase<?= $key_clases['num_clases'] ?>">  
+                        <span class="material-symbols-outlined" >
                             edit_square
                         </span>
-                        <a href="../index.php?controller=ClasesController&action=destroy&id=<?= $key['num_clases'] ?>">
                         
-
-                            <span class="material-symbols-outlined">delete</span>
+                        </a>
+                        <a href="../index.php?controller=ClasesController&action=destroy&id=<?= $key_clases['num_clases'] ?>">
+                            <span class="material-symbols-outlined" style="color: red">delete</span>
                         </a>
 
                     </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</section>
-
+                    
 
 <!-- Modal  agregar-->
-<div class="modal fade" id="editClase" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="editClase<?= $key_clases['num_clases'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -165,14 +154,13 @@ $null = $nullMaestro->traerMaestroModel();
             </div>
             <div class="modal-body">
 
-                <form action="../index.php?controller=ClasesController&action=updateClases&id=<?= $key['num_clases'] ?>" method="POST">
+                <form action="../index.php?controller=ClasesController&action=updateClases&id=<?= $key_clases['num_clases'] ?>" method="POST">
 
 
                     <div class="mb-3">
                         <label for="materia">Nombre de la Materia</label>
 
-                        <input type="text" id="materia" name="materia" placeholder="Nombre de la Materia" class="form-control">
-                        <input type="text" placeholder="<?= $key['num_clases'] ?>">
+                        <input type="text" id="materia" name="materia" placeholder="<?= $key_clases['clases'] ?>" class="form-control">
                     </div>
 
 
@@ -180,7 +168,7 @@ $null = $nullMaestro->traerMaestroModel();
                     <div class="selectInput">
                         <label for="profesor">Maestro Asignado</label>
 
-                        <select name="rol_id" class="form-control">
+                        <select name="user_id" class="form-control">
                             <option value="" disabled selected>Selecciona un rol</option>
 
                             <?php foreach ($allData as $key) : ?>
@@ -198,19 +186,22 @@ $null = $nullMaestro->traerMaestroModel();
                     </div>
 
                 </form>
-
-
             </div>
         </div>
 
     </div>
 
-
 </div>
 </div>
 </div>
 
 
+
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</section>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>

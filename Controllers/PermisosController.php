@@ -26,12 +26,13 @@ class PermisosController
 
     public function permisosController()
     {
-
+        $id = $_GET['id'];
         $email = $_POST['email'];
         $rol_id =  $_POST['rol_id'];
+        $status = $_POST['status'];
 
         $usuario = new Permisos;
-        $usuario->permisos($rol_id, $email);
+        $usuario->permisos($rol_id, $status, $id);
 
         header('location:  index.php?controller=PermisosController&action=selecRol');
     }

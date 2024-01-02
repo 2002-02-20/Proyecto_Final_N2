@@ -58,6 +58,7 @@ h2:hover{
     border-radius: 3px;
     margin-top: 5px;
     padding: 0px;
+    display: none;
 }
 
 .btnAdministrador{

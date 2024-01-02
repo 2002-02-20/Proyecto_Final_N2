@@ -22,7 +22,7 @@ $roles = $a->roles();
 
 
 
-<section class="infoPage">
+<section class="infoPage mt-3">
     <div class="h3Permisos">
         <h3>Permisos </h3>
     </div>
@@ -32,6 +32,7 @@ $roles = $a->roles();
                 <th class="id">#</th>
                 <th>Email/Usuario</th>
                 <th>Permiso</th>
+                <th>Estado</th>
                 <th>Accion</th>
             </tr>
         </thead>
@@ -61,11 +62,25 @@ $roles = $a->roles();
                             <span class="colorA"><?= $keyData['rol_nombre'] ?></span>
                         <?php endif ?>
                     </td>
-
                     <td>
-                        <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
-                            edit_square
-                        </span>
+                    <?php if (($keyData['status'] == 1)) : ?>
+                                    <div class="activo">
+                                        <p>Activo</p>
+                                    </div>
+                                <?php else : ?>
+                                    <div class="inactivo">
+                                        <p>Inactivo</p>
+                                    </div>
+
+                                <?php endif ?>
+                        
+                    </td>
+                    <td>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalLong<?= $keyData['id'] ?>">
+                            <span class="material-symbols-outlined">
+                                edit_square
+                            </span>
+                        </a>
                     </td>
                 </tr>
 
@@ -74,7 +89,7 @@ $roles = $a->roles();
 
 
                     <!-- Modal  agregar-->
-                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal fade" id="exampleModalLong<?= $keyData['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -83,12 +98,12 @@ $roles = $a->roles();
                                 </div>
                                 <div class="modal-body">
 
-                                    <form action="../index.php?controller=PermisosController&action=permisosController" method="POST">
+                                    <form action="../index.php?controller=PermisosController&action=permisosController&id=<?= $keyData['id'] ?>" method="POST">
 
                                         <div class="mb-3">
                                             <label for="emailUsuario">Email del Usuario</label>
 
-                                            <input type="email" id="emailUsuario" name="email" placeholder="<?= $keyData['id'] ?>" class="form-control">
+                                            <input type="email" id="emailUsuario" name="email" placeholder="<?= $keyData['email'] ?>" class="form-control" disabled>
                                         </div>
 
 
@@ -104,9 +119,19 @@ $roles = $a->roles();
 
                                             </select>
                                         </div>
+
+                                        <div class="form-check form-switch" style="margin: 20px 0px;">
+                                            <input type="hidden" name="status_actual" value="<?= $keyData['status'] ?>">
+                                            <input class="form-check-input" type="checkbox" name="status" id="flexSwitchCheckChecked" <?= ($keyData['status'] == 1) ? 'checked' : ''; ?>>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">
+                                                <?php echo ($keyData['status'] == 1) ? 'Usuario Activo' : 'Usuario Inactivo'; ?>
+                                            </label>
+                                        </div>
+
                                         <div class="modal-footer">
                                             <button type="submit" id="btnGuardarCambios" class="btn btn-primary">Guardar Cambios</button>
                                         </div>
+
 
                                     </form>
 

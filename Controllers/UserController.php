@@ -24,16 +24,7 @@ class UserController
         require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/dashboard.php';
 
     }
-    #FUNCIONA
-   /*  public function insertData()
-    {
-        $email =  $_POST['email'];
-        $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $rol_id =  $_POST['rol'];
-        $auth = new Usuarios;
-        $auth->register($email,  $hash, $rol_id);
-    } 
- */
+
 
 
     #FUCIONA
@@ -44,16 +35,21 @@ class UserController
         $usuarios = new Usuarios;
         $user = $usuarios->select($email);
 
+        $nombre_clase_master= $usuarios->traerClaseName($email);
+
         if (password_verify($password, $user['password'])) {
 
             session_start();
             $_SESSION['userData'] =  $user;
+            $_SESSION['claseData'] =  $nombre_clase_master;
+
 
             header('location: ../index.php');
         } else {
             header('location: ../Views/login.php');
         }
     }
+
 
     #funciona ACTUALIZADO 
     public function registerTeacher()
@@ -78,7 +74,7 @@ class UserController
     #X METODO GET = ID 
     public function update()
     {
-        $id = $_POST['id'];
+        $id = $_GET['id'];
         $email =  $_POST['email'];
         $nombres =  $_POST['nombres'];
         $apellidos =  $_POST['apellidos'];
@@ -93,6 +89,7 @@ class UserController
         header('location:  index.php?controller=UserController&action=index');
     }
 
+  
 
     public function destroy()
     {

@@ -1,3 +1,16 @@
+<?php
+
+$_SESSION['userData']; 
+
+if ($_SESSION['userData'] === 1) {
+  $nombrePerfil = 'ADMINISTRADOR'; 
+} elseif($_SESSION['userData'] === 2){
+    $nombrePerfil = 'ADMINISTRADOR'; 
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +30,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 </head>
 </head>
-
+<!-- ARREGLAR EL MENU INTERACTIVO LINEA 43 -->
 <body class="body">
     <nav class="sideBar">
         <div class="logoTitulo">
@@ -25,10 +38,12 @@
             <p>Universidad</p>
         </div>
 
-        <div class="categoriasPerfil">
-            <?php foreach ($menu1 as $key => $options) : ?>
-                <p><?= $key ?></p>
-            <?php endforeach; ?>
+
+    <p><strong>MENU MAESTRO</strong></p>
+  <?php $usuario = $userData['nombres'] . ' ' . $userData['apellidos'];
+        print_r($usuario);
+        ?>
+
 
         </div>
 

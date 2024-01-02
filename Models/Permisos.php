@@ -31,12 +31,12 @@ class Permisos
     }
 
 
-    public function permisos($rol_id, $email)
+    public function permisos($rol_id, $status, $id)
     {
-        $query = 'UPDATE `informacion` SET `rol_id`=? WHERE email = ?';
+        $query = 'UPDATE `informacion` SET `rol_id`=?, `status`=? WHERE id = ?';
         try {
             $stm = $this->conexion->prepare($query);
-            $stm->execute([$rol_id, $email]);
+            $stm->execute([$rol_id, $status, $id]);
             $result = $stm->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             echo $e->getMessage();

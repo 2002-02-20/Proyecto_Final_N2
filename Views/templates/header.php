@@ -7,7 +7,8 @@ if (isset($_SESSION['userData'])) {
 
     $maestros  = ['Clases' => 'index.php?controller=MaestroController&action=index'];
     $tipoMenu2 = ['MENU MAESTRO' => 'index.php?controller=UserController&action=dashboard'];
-    $maestros1 = ['maestro'  => 'index.php?', 'Maestro' => 'index.php?'];
+    /*     $maestros1 = ['maestro'  => 'index.php?', 'Maestro' => 'index.php?'];
+ */
     $navBArMaestros = ['Maestro' => ''];
 
     $admin = ['Permisos' => 'index.php?controller=PermisosController&action=selecRol', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => 'index.php?controller=ClasesController&action=materias'];
@@ -23,7 +24,9 @@ if (isset($_SESSION['userData'])) {
         $tipoMenu = $tipoMenu1;
     } else if ($userData['rol_id'] === 2) {
         $menu = $maestros;
-        $menu1 = $maestros1;
+
+        /*  $menu1 = $maestros1; */
+
         $menu2 = $navBArMaestros;
         $tipoMenu = $tipoMenu2;
     }
@@ -39,9 +42,9 @@ if (isset($_SESSION['userData'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information</title>
+    <script src="/Views/JS/interactive.js" defer></script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,6 +57,8 @@ if (isset($_SESSION['userData'])) {
 
 
 
+
+
 </head>
 </head>
 
@@ -62,9 +67,12 @@ if (isset($_SESSION['userData'])) {
         <ul class="ulNav">
             <li id="menuHome">Home</li>
             <li><button class="btnAdministrador">
-                    <?php foreach ($menu2 as $key => $options) : ?>
+                    <!--                     <?php foreach ($menu2 as $key => $options) : ?>
                         <p><?= $key ?></p>
                     <?php endforeach; ?>
+ --> <?php $usuario = $userData['nombres'] . ' ' . $userData['apellidos'];
+        print_r($usuario);
+        ?>
 
 
                     <span class="material-symbols-outlined">

@@ -44,6 +44,22 @@ class Usuarios
         }
     }
 
+    public function traerClaseName($email)
+    {
+        $query = 'SELECT clases.clases FROM clases INNER JOIN informacion on informacion.clase_id = clases.id WHERE email =?';
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute([$email]);
+            $result = $stm->fetch(PDO::FETCH_ASSOC);
+
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
 
     #ACTUALIZADO FUNCIONA
     public function registerTeacher($email,  $rol_id, $nombres, $apellidos, $hash, $direccion, $fechaNacimiento, $claseAsignada)
@@ -84,6 +100,20 @@ class Usuarios
         try {
             $stm = $this->conexion->prepare($query);
             $stm->execute([$email, $nombres, $apellidos, $direccion, $fechaNacimiento, $claseAsignada, $id]);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+    public function updateMateria($id, $claseAsignada)
+    {
+
+        $query = "UPDATE `informacion` SET `clase_id`=? WHERE id=?";
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute([$claseAsignada, $id]);
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

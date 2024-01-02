@@ -41,10 +41,13 @@ class ClasesController
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
+            $user_id = $_POST['user_id'];
             $nombre_clase = $_POST['materia']; 
-
             $update = new Clases;
             $clasesUpdate = $update->updateClaseController($nombre_clase, $id); 
+
+            $updateUsuarios = new Usuarios;
+            $updateUsuarios->updateMateria($user_id, $id); 
             header('location:  index.php?controller=ClasesController&action=index');
 
         }

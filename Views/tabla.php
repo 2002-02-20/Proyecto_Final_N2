@@ -24,7 +24,7 @@ $nom_clases = $clases->clases();
 
 
 <section class="infoPage mt-3">
-    <div class="infoMaestrosBtn">
+    <div class="infoMaestrosBtn"> 
         <h2>Información de Maestros</h2>
         <div class="btnModels">
             <!-- Tu modal de editar perfil aquí -->
@@ -32,7 +32,6 @@ $nom_clases = $clases->clases();
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
                 Agregar Usuario
             </button>
-
             <!-- Button trigger modal -->
             <div class="container mt-5">
 
@@ -165,14 +164,15 @@ $nom_clases = $clases->clases();
                         <?php endif ?>
                     </td>
                     <td id="iconsModel">
-                        <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#editarPerfil">
-                            edit_square
-                        </span>
-
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#editarPerfil<?= $key['id'] ?>">
+                            <span class="material-symbols-outlined">
+                                edit_square
+                            </span>
+                        </a>
 
                         <div class="btnModels">
                             <!-- Modal -->
-                            <div class="modal fade" id="editarPerfil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="editarPerfil<?= $key['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -181,15 +181,11 @@ $nom_clases = $clases->clases();
                                         </div>
                                         <div class="modal-body">
 
-                                            <form action="../index.php?controller=UserController&action=update" method="POST">
-                                                <div class="mb-3">
-                                                    <label for="perfil"><strong>Número del Perfil</strong></label>
-                                                    <input type="number" class="form-control" id="perfil" name="id" placeholder="<?= $key['id'] ?>">
-                                                </div>
+                                            <form action="../index.php?controller=UserController&action=update&id=<?= $key['id'] ?>" method="POST">
 
                                                 <div class="mb-3">
                                                     <label for="email"><strong>Correo Electronico</strong></label>
-                                                    <input type="text" class="form-control" id="email" name="email" placeholder="<?= $key['email'] ?>">
+                                                    <input type="text" class="form-control" id="email" name="email" placeholder="<?= $key['email'] ?>" value="<?= $key['email'] ?>">
 
                                                 </div>
 
@@ -246,14 +242,14 @@ $nom_clases = $clases->clases();
 
 
                         <a href="../index.php?controller=UserController&action=destroy&id=<?= $key['id'] ?>">
-                            <span class="material-symbols-outlined">delete</span>
+                            <span class="material-symbols-outlined" style="color: red">delete</span>
                         </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    
+
 </section>
 </div>
 
