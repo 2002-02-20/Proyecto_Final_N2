@@ -49,8 +49,6 @@ if ($_SESSION['userData']['id'] === 1) {
         </div>
     </nav>
 
-
-
 </body>
 
 </html>

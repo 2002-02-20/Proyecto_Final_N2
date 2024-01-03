@@ -123,7 +123,7 @@ li {
 }
 
 .activo {
-    background-color: #38d64d;
+    background-color: #5be26d;
 
     padding: 3px 5px;
     border-radius: 5px;
@@ -139,7 +139,7 @@ li {
     width: 70px;
     height: 30px;
     color: white;
-    background-color: #ff4848;
+    background-color: #ff5b5b;
 
 }
 
