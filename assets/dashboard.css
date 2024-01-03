@@ -11,10 +11,6 @@
     top: 100px
 }
 
-h3{
-    border-bottom: solid 1px #c5c5c5;
-    padding-bottom: 13px;
-}
 
 h3:hover{
     color: #969696;

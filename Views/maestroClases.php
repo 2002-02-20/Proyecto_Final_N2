@@ -3,7 +3,7 @@
 
 if (isset($_SESSION['claseData']) && !empty($_SESSION['claseData'])) {
     $clase = $_SESSION['claseData'];
-} 
+}
 
 
 /* require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Clases.php';
@@ -27,10 +27,12 @@ $allData = $select->materiasA();
 
 
 <section class="infoPage mt-3">
-    <div class="h3Permisos">
-     <h3>Alumnos de la clase <?php print_r($clase['clases'])?>
-</h3>
-       
+    <div >
+        <?php if (!isset($clase['clases'])) : ?>
+            <h3>No hay clases Asignadas</h3>
+        <?php else : ?>
+            <h3>Alumnos de la clase <?php print_r($clase['clases']) ?></h3>
+        <?php endif ?>
     </div>
     <table id="myTable" class="table">
         <thead>

@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Permisos.php';
 $select = new Permisos;
 $allData = $select->selectRol();
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
 $a = new Usuarios;
 $roles = $a->roles();
@@ -22,7 +23,7 @@ $roles = $a->roles();
 
 
 <section class="infoPage mt-3">
-    <div class="containerBtn">
+    <div class="h3Permisos">
         <h3>Permisos </h3>
     </div>
     <table id="myTable" class="table">
@@ -112,10 +113,9 @@ $roles = $a->roles();
                                             <label class="form-check-label" for="flexSwitchCheckChecked">
                                                 <?php echo ($keyData['status'] == 1) ? 'Usuario Activo' : 'Usuario Inactivo'; ?>
                                             </label>
-                                            <?=($keyData['status'] ) ?>
                                         </div>
 
-<!--  -->
+
                                         <div class="modal-footer">
                                             <button type="submit" id="btnGuardarCambios" class="btn btn-primary">Guardar Cambios</button>
                                         </div>
@@ -142,6 +142,7 @@ $roles = $a->roles();
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>

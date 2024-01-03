@@ -6,7 +6,7 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-.id{
+.id {
     width: 5%;
     text-align: left;
     padding: 0.3em;
@@ -30,7 +30,7 @@ table {
     margin-left: 30px;
 }
 
-.infoPage{
+.infoPage {
     background-color: #FFFFFF;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 80%;
@@ -41,14 +41,14 @@ table {
     padding: 30px;
 }
 
-.table_info{
+.table_info {
     position: absolute;
     top: 220px;
     left: 310px;
 }
 
 /*editar espacio botones*/
-.infoMaestrosBtn{
+.infoMaestrosBtn {
     border-bottom: solid 1px #bbbbbb;
     display: flex;
     flex-direction: row;
@@ -57,38 +57,39 @@ table {
     justify-content: space-between;
 }
 
-#agregarMaestro{
+#agregarMaestro {
     border: none;
     border-radius: 4px;
     background-color: #007CF9;
     color: white;
 
 }
-#agregarMaestro:hover{
-    background-color: #00c3f9 ;
+
+#agregarMaestro:hover {
+    background-color: #00c3f9;
     transition: 0.3s;
 }
 
 /*VIDEO*/
 
-.footer-tools{
+.footer-tools {
     padding: var(--dt-padding);
     display: flex;
     align-items: baseline;
 }
 
-.list-items{
+.list-items {
     width: 50%;
 }
 
-.pages{
-    margin-left: auto ;
+.pages {
+    margin-left: auto;
     margin-right: 0;
 
     width: 50%;
 }
 
-ul{
+ul {
     margin: 0 5px;
     padding: 0;
     display: flex;
@@ -96,43 +97,64 @@ ul{
     justify-content: flex-end;
 }
 
-li{
+li {
     display: inline-block;
     margin: 0 var(--dt-padding-xs);
     padding: 0px 5px;
 }
 
-.btnNum{
+.btnNum {
     padding: 0px 5px;
 }
 
-.h3Permisos{
-    padding-bottom: 10px;
+.containerBtn{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
     border-bottom: solid 1px #b9b9b9;
     margin-bottom: 25px;
+    padding-bottom: 15px;
+
+}
+
+
+#iconsModel {
     display: flex;
-    justify-content: space-between;
-
 }
 
-#iconsModel{
-    display: flex;
-}
+.activo {
+    background-color: #38d64d;
 
-.activo{
-    background-color: red;
-     padding: 3px 5px;
-     border-radius: 5px;
-     width: 65px;
-     height: 30px;
-
-}
-
-.inactivo{
-    background-color: green;
     padding: 3px 5px;
-     border-radius: 5px;
-     width: 70px;
-     height: 30px;
+    border-radius: 5px;
+    width: 65px;
+    height: 30px;
+    color: white;
 
+}
+
+.inactivo {
+    padding: 3px 5px;
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    color: white;
+    background-color: #ff4848;
+
+}
+
+
+.color {
+    background-color: #fccb1c;
+    padding: 3px 5px;
+    border-radius: 5px;
+    color: white;
+
+}
+
+.colorA {
+    background-color: #6cc9fc;
+    padding: 3px 5px;
+    border-radius: 5px;
+    color: white;
 }

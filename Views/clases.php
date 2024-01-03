@@ -27,7 +27,7 @@ $null = $nullMaestro->traerMaestroModel();
 
 
 <section class="infoPage mt-3">
-    <div class="h3Permisos">
+    <div class="containerBtn">
         <h3>Clases </h3>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalLong">
             Agregar Clase

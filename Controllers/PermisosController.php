@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 /* require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
- */require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Permisos.php';
+ */ require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Permisos.php';
 
 
 class PermisosController
@@ -30,11 +30,11 @@ class PermisosController
         $email = $_POST['email'];
         $rol_id =  $_POST['rol_id'];
         $status = $_POST['status'];
+        $status = isset($_POST['status']) ? 1 : 0;
 
         $usuario = new Permisos;
         $usuario->permisos($rol_id, $status, $id);
 
         header('location:  index.php?controller=PermisosController&action=selecRol');
     }
-
 }

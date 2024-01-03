@@ -7,26 +7,23 @@ if (isset($_SESSION['userData'])) {
 
     $maestros  = ['Clases' => 'index.php?controller=MaestroController&action=index'];
     $tipoMenu2 = ['MENU MAESTRO' => 'index.php?controller=UserController&action=dashboard'];
-    /*     $maestros1 = ['maestro'  => 'index.php?', 'Maestro' => 'index.php?'];
- */
+
     $navBArMaestros = ['Maestro' => ''];
 
     $admin = ['Permisos' => 'index.php?controller=PermisosController&action=selecRol', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => 'index.php?controller=ClasesController&action=materias'];
 
-    $admin1 = ['admin'  => 'index.php?', 'Administrador' => 'index.php?'];
+  
     $navBAr = ['Administrador' => 'index.php?controller=UserController&action=logout'];
+    
     $tipoMenu1 = ['MENU ADMINISTRADOR' => 'index.php?controller=UserController&action=dashboard'];
 
     if ($userData['rol_id'] === 1) {
         $menu = $admin;
-        $menu1 = $admin1;
+
         $menu2 = $navBAr;
         $tipoMenu = $tipoMenu1;
     } else if ($userData['rol_id'] === 2) {
         $menu = $maestros;
-
-        /*  $menu1 = $maestros1; */
-
         $menu2 = $navBArMaestros;
         $tipoMenu = $tipoMenu2;
     }
@@ -52,11 +49,6 @@ if (isset($_SESSION['userData'])) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/info.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-
-
-
 
 
 </head>
@@ -67,12 +59,9 @@ if (isset($_SESSION['userData'])) {
         <ul class="ulNav">
             <li id="menuHome">Home</li>
             <li><button class="btnAdministrador">
-                    <!--                     <?php foreach ($menu2 as $key => $options) : ?>
-                        <p><?= $key ?></p>
-                    <?php endforeach; ?>
- --> <?php $usuario = $userData['nombres'] . ' ' . $userData['apellidos'];
-        print_r($usuario);
-        ?>
+                    <?php $usuario = $userData['nombres'] . ' ' . $userData['apellidos'];
+                    print_r($usuario);
+                    ?>
 
 
                     <span class="material-symbols-outlined">
@@ -92,10 +81,7 @@ if (isset($_SESSION['userData'])) {
         </ul>
     </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+  
 
 </body>
 

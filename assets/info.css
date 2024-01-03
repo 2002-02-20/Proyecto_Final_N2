@@ -52,13 +52,16 @@ h2:hover{
 }
 
 .ulNavInteractive{
+    position: absolute;
     background-color: #FFFFFF;
     box-shadow: 10px 0 5px rgba(0, 0, 0, 0.2);
     color: #9D9B9A;
-    border-radius: 3px;
+    border-radius: 5px;
     margin-top: 5px;
     padding: 0px;
     display: none;
+    z-index: 999;
+
 }
 
 .btnAdministrador{
@@ -79,7 +82,7 @@ h2:hover{
     background-color: #FFFFFF;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 80%;
-    position: absolute;
+    position: fixed;
     top: 80px;
     left: 17%;
     height: 83%;
@@ -111,6 +114,7 @@ h2:hover{
 
 .displayBlock{
     display: block;
+
 }
 
 .mouseColorNav{
@@ -186,14 +190,19 @@ h2:hover{
 
 .liPerfil:hover{
     background-color: #dddddd;
+    border-radius: 5px;
+
 }
 
 .liLogout > a{
     text-decoration: none;
+
 }
 
 .liLogout:hover{
     background-color: #dddddd;
+    border-radius: 5px;
+
 }
 
 .displayblock{
