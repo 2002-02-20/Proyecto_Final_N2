@@ -40,7 +40,7 @@
         </section>
     </section>
 
-  <!--   <section class="infoToPass">
+    <!--   <section class="infoToPass">
         <h4 class="infoAcceso">Información Acceso</h4>
         <div class="infoAdminMaestro">
             <p><strong>Admin</strong></p>

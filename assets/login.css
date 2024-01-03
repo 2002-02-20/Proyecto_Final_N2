@@ -1,135 +1,129 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Quicksand', sans-serif;
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 body {
-    background-color: #FFF5D2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background-color: #fff5d2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 h3 {
-    color: #9D9B9A;
+  color: #9d9b9a;
 }
 
 .boxLogin {
-    background-color: #FFFFFF;
-    width: 400px;
-    height: 200px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 50px;
+  background-color: #ffffff;
+  width: 400px;
+  height: 200px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
 }
 
 input {
-    border: none;
-    outline: none;
-    width: 100%;
-    background-color: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: transparent;
 }
 
 .inputEmail {
-    border: solid 1px #9D9B9A;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 350px;
-    height: 35px;
-    margin: 10px 0px;
-    padding: 0px 15px;
-    margin: 15px 0px;
-
-
+  border: solid 1px #9d9b9a;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 35px;
+  margin: 10px 0px;
+  padding: 0px 15px;
+  margin: 15px 0px;
 }
 
 .emailIcon {
-    color: #9D9B9A;
+  color: #9d9b9a;
 }
 
 .lockIcon {
-    color: #9D9B9A;
-
+  color: #9d9b9a;
 }
 
 .inputPassword {
-    border: solid 1px #9D9B9A;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 350px;
-    height: 35px;
-    margin: 15px 0px;
-    padding: 0px 15px;
+  border: solid 1px #9d9b9a;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 35px;
+  margin: 15px 0px;
+  padding: 0px 15px;
 }
 
 .buttonClass {
-    width: 100%;
-    display: flex;
-    justify-content: end;
-
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }
 
 button {
-    background-color: #007BFE;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    padding: 7px 20px;
+  background-color: #007bfe;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 7px 20px;
 }
 
 button:hover {
-    background-color: #2F92FF;
-    cursor: pointer;
-    transition: 0.3s;
+  background-color: #2f92ff;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .infoToPass {
-    background-color: #FFFFFF;
-    width: 200px;
-    height: 250px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  width: 200px;
+  height: 250px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .infoAcceso {
-    border-bottom: #9D9B9A solid 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 0px;
-    margin: 0px 10px;
+  border-bottom: #9d9b9a solid 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0px;
+  margin: 0px 10px;
 }
 
 .infoAdminMaestro {
-    padding-top: 5px;
-    padding-left: 15px;
+  padding-top: 5px;
+  padding-left: 15px;
 }
 
 p {
-    padding: 5px 0px;
+  padding: 5px 0px;
 }
 
 .university_Icon {
-    width: 300px;
-
+  width: 300px;
 }
 
 .allBoxLogin {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

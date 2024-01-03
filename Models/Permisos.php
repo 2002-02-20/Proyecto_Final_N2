@@ -42,5 +42,4 @@ class Permisos
             echo $e->getMessage();
         }
     }
-
 }

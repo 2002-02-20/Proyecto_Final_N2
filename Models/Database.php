@@ -17,7 +17,7 @@ class Database
         $this->password = PASSWORD;
         $this->dbname = DB_NAME;
 
-        $this->conexion = new \PDO("mysql:host=$this->hostname;dbname=$this->dbname", $this->username,$this->password); 
+        $this->conexion = new \PDO("mysql:host=$this->hostname;dbname=$this->dbname", $this->username, $this->password);
     }
 
     function getConexion()
@@ -30,4 +30,3 @@ class Database
         $this->conexion = null;
     }
 }
-

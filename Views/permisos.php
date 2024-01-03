@@ -1,4 +1,14 @@
 <?php
+
+if (isset($_SESSION['userData'])){
+    $dataMaestros = $_SESSION['userData'];
+
+}
+else{
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/index.php';
+}
+
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Permisos.php';
 $select = new Permisos;
 $allData = $select->selectRol();
@@ -35,7 +45,7 @@ $roles = $a->roles();
                 <th>Permiso</th>
                 <th>Estado</th>
                 <th>Accion</th>
-                
+
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -117,7 +127,7 @@ $roles = $a->roles();
                                             </label>
                                         </div>
 
-<!--  -->
+                                        <!--  -->
                                         <div class="modal-footer">
                                             <button type="submit" id="btnGuardarCambios" class="btn btn-primary">Guardar Cambios</button>
                                         </div>

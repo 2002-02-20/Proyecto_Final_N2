@@ -26,7 +26,6 @@ class Clases
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-
     }
 
     #TERMINAR LA FUNCION
@@ -39,11 +38,6 @@ class Clases
             $stm = $this->conexion->prepare($query);
             $stm->execute([$clases]);
 
-            /*             if ($user_id) {
-                    $last_id = $this->conexion->lastInsertId();
-                    $this->asignMateria($last_id, $user_id);
-                }
-     */
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -92,8 +86,6 @@ class Clases
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-
-
     }
 
 

@@ -15,7 +15,7 @@ class ClasesController
 
     public function index()
     {
-       require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/clases.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/clases.php';
     }
 
     public function materias()
@@ -23,18 +23,16 @@ class ClasesController
         $select = new Clases();
         $selectClase = $select->materiasA();
         require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/clases.php';
-
     }
 
 
     public function agregarMateria()
     {
-        $nombreMateria = $_POST['nombreMateria']; 
-        
-        $materia = new Clases;
-        $agregarMat = $materia->agregarMateriaModel($nombreMateria); 
-        header('location:  index.php?controller=ClasesController&action=index');
+        $nombreMateria = $_POST['nombreMateria'];
 
+        $materia = new Clases;
+        $agregarMat = $materia->agregarMateriaModel($nombreMateria);
+        header('location:  index.php?controller=ClasesController&action=index');
     }
 
     public function updateClases()
@@ -42,18 +40,17 @@ class ClasesController
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $user_id = $_POST['user_id'];
-            $nombre_clase = $_POST['materia']; 
+            $nombre_clase = $_POST['materia'];
             $update = new Clases;
-            $clasesUpdate = $update->updateClaseController($nombre_clase, $id); 
+            $clasesUpdate = $update->updateClaseController($nombre_clase, $id);
 
             $updateUsuarios = new Usuarios;
-            $updateUsuarios->updateMateria($user_id, $id); 
+            $updateUsuarios->updateMateria($user_id, $id);
             header('location:  index.php?controller=ClasesController&action=index');
-
         }
     }
 
-    public function destroy() 
+    public function destroy()
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
@@ -64,5 +61,4 @@ class ClasesController
             header('location:  index.php?controller=ClasesController&action=index');
         }
     }
-
 }

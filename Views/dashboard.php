@@ -1,3 +1,14 @@
+<?php 
+
+if (isset($_SESSION['userData'])){
+        $dataMaestros = $_SESSION['userData'];
+    
+    }
+    else{
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/index.php';
+    }
+    
+?>
 
 <link rel="stylesheet" href="../assets/dashboard.css">
 

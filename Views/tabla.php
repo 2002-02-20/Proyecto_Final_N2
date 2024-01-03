@@ -1,4 +1,15 @@
 <?php
+
+if (isset($_SESSION['userData'])){
+    $dataMaestros = $_SESSION['userData'];
+
+}
+else{
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/index.php';
+}
+
+
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Clases.php';
 
@@ -28,7 +39,7 @@ $nom_clases = $clases->clases();
 
 
 <section class="infoPage mt-3">
-    <div class="infoMaestrosBtn"> 
+    <div class="infoMaestrosBtn">
         <h2>Información de Maestros</h2>
         <div class="btnModels">
             <!-- Tu modal de editar perfil aquí -->

@@ -38,7 +38,7 @@ if ($_SESSION['userData']['id'] === 1) {
             <p><?= $userData['nombres'] . ' ' . $userData['apellidos'] ?></p>
         </div>
 
-       
+
         <div class="sectionPerfil">
             <?php foreach ($tipoMenu as $key => $options) : ?>
                 <p><?= $key ?></p>
@@ -46,9 +46,9 @@ if ($_SESSION['userData']['id'] === 1) {
 
             <?php foreach ($menu as $key => $options) : ?>
                 <li class="li">
-                   
-                    <img src="<?= $options['icon']?>" alt="logo" width="20" height="20">
-                    <a href="<?= $options['url']?>"><?= $key ?></a>
+
+                    <img src="<?= $options['icon'] ?>" alt="logo" width="20" height="20">
+                    <a href="<?= $options['url'] ?>"><?= $key ?></a>
                 </li>
             <?php endforeach; ?>
 
@@ -58,4 +58,3 @@ if ($_SESSION['userData']['id'] === 1) {
 </body>
 
 </html>
-

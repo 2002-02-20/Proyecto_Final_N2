@@ -1,5 +1,15 @@
 <?php
 
+if (isset($_SESSION['userData'])){
+    $dataMaestros = $_SESSION['userData'];
+
+}
+else{
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/index.php';
+}
+
+
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Clases.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Controllers/ClasesController.php';
 
@@ -134,69 +144,69 @@ $null = $nullMaestro->traerMaestroModel();
                     </td>
                     <td><?= $key_clases['clases'] ?></td>
                     <td>
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#editClase<?= $key_clases['num_clases'] ?>">  
-                        <span class="material-symbols-outlined" >
-                            edit_square
-                        </span>
-                        
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#editClase<?= $key_clases['num_clases'] ?>">
+                            <span class="material-symbols-outlined">
+                                edit_square
+                            </span>
+
                         </a>
                         <a href="../index.php?controller=ClasesController&action=destroy&id=<?= $key_clases['num_clases'] ?>">
                             <span class="material-symbols-outlined" style="color: red">delete</span>
                         </a>
 
                     </td>
-                    
-
-<!-- Modal  agregar-->
-<div class="modal fade" id="editClase<?= $key_clases['num_clases'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLabel">Editar Clase</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <form action="../index.php?controller=ClasesController&action=updateClases&id=<?= $key_clases['num_clases'] ?>" method="POST">
 
 
-                    <div class="mb-3">
-                        <label for="materia">Nombre de la Materia</label>
+                    <!-- Modal  agregar-->
+                    <div class="modal fade" id="editClase<?= $key_clases['num_clases'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="exampleModalLabel">Editar Clase</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
 
-                        <input type="text" id="materia" name="materia" placeholder="<?= $key_clases['clases'] ?>" value="<?= $key_clases['clases'] ?>" class="form-control">
+                                    <form action="../index.php?controller=ClasesController&action=updateClases&id=<?= $key_clases['num_clases'] ?>" method="POST">
+
+
+                                        <div class="mb-3">
+                                            <label for="materia">Nombre de la Materia</label>
+
+                                            <input type="text" id="materia" name="materia" placeholder="<?= $key_clases['clases'] ?>" value="<?= $key_clases['clases'] ?>" class="form-control">
+                                        </div>
+
+
+                                        <!--     EDITAR -->
+                                        <div class="selectInput">
+                                            <label for="profesor">Maestro Asignado</label>
+
+                                            <select name="user_id" class="form-control">
+                                                <option value="" disabled selected>Selecciona un rol</option>
+
+                                                <?php foreach ($null as $nombreMaestro) : ?>
+
+                                                    <?php if (isset($nombreMaestro['nombres'])) : ?>
+                                                        <option value="<?= $nombreMaestro['id'] ?>"><?= $nombreMaestro['nombres'] ?> <?= $nombreMaestro['apellidos'] ?></option>
+
+                                                    <?php endif ?>
+                                                <?php endforeach; ?>
+
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" id="btnGuardarCambios" class="btn btn-primary">Guardar Cambios</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
-
-
-                    <!--     EDITAR -->
-                    <div class="selectInput">
-                        <label for="profesor">Maestro Asignado</label>
-
-                        <select name="user_id" class="form-control">
-                            <option value="" disabled selected>Selecciona un rol</option>
-
-                            <?php foreach ($null as $nombreMaestro) : ?>
-
-                                <?php if (isset($nombreMaestro['nombres'])) : ?>
-                                    <option value="<?= $nombreMaestro['id'] ?>"><?= $nombreMaestro['nombres'] ?> <?= $nombreMaestro['apellidos'] ?></option>
-
-                                <?php endif ?>
-                            <?php endforeach; ?>
-
-                        </select>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="btnGuardarCambios" class="btn btn-primary">Guardar Cambios</button>
                     </div>
-
-                </form>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-</div>
-</div>
 
 
 

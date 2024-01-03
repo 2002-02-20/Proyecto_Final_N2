@@ -1,22 +1,19 @@
-
-.dashboard{
-    background-color: #FFFFFF;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: 40%;
-    position: absolute;
-    left: 17%;
-    height: 25%;
-    border-radius: 10px;
-    padding: 30px;
-    top: 100px
+.dashboard {
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 40%;
+  position: absolute;
+  left: 17%;
+  height: 25%;
+  border-radius: 10px;
+  padding: 30px;
+  top: 100px;
 }
 
-
-h3:hover{
-    color: #969696;
+h3:hover {
+  color: #969696;
 }
 
-
-p:hover{
-    color: #969696;
+p:hover {
+  color: #969696;
 }

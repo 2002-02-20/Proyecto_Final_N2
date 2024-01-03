@@ -1,13 +1,26 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
 
 
-class MaestroController{
-
-
-public function index()
+class MaestroController
 {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/maestroClases.php';
 
-}
+    private $conexion;
+
+    public function __construct()
+    {
+        $database = new Database();
+        $this->conexion = $database->getConexion();
+    }
+
+
+
+    public function index()
+    {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/maestroClases.php';
+    }
+
+
+ 
 
 }

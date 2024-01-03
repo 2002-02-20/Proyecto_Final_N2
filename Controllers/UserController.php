@@ -15,14 +15,12 @@ class UserController
     public function index()
     {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/tabla.php';
-
     }
 
 
     public function dashboard()
     {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/dashboard.php';
-
     }
 
 
@@ -35,7 +33,7 @@ class UserController
         $usuarios = new Usuarios;
         $user = $usuarios->select($email);
 
-        $nombre_clase_master= $usuarios->traerClaseName($email);
+        $nombre_clase_master = $usuarios->traerClaseName($email);
 
         if (password_verify($password, $user['password'])) {
 
@@ -66,9 +64,8 @@ class UserController
 
         $usuarios = new Usuarios;
         $usuarios->registerTeacher($email,  $rol_id, $nombres, $apellidos, $hash, $direccion, $fechaNacimiento, $claseAsignada);
-       
-        header('location:  index.php?controller=UserController&action=index'); 
 
+        header('location:  index.php?controller=UserController&action=index');
     }
 
     #X METODO GET = ID 
@@ -89,7 +86,7 @@ class UserController
         header('location:  index.php?controller=UserController&action=index');
     }
 
-  
+
 
     public function destroy()
     {
@@ -107,7 +104,5 @@ class UserController
     {
         session_destroy();
         header('location: ../Views/login.php');
-
     }
 }
-

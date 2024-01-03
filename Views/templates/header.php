@@ -5,31 +5,34 @@ if (isset($_SESSION['userData'])) {
 
     $userData = $_SESSION['userData'];
 
-    $maestros  = ['Clases' => 'index.php?controller=MaestroController&action=index'];
+    $maestros  = [
+        'Clases' => ['url' => 'index.php?controller=MaestroController&action=index', 'icon' => '../Views/icons/school_FILL0_wght400_GRAD0_opsz24.png']];
+        
     $tipoMenu2 = ['MENU MAESTRO' => 'index.php?controller=UserController&action=dashboard'];
 
     $navBArMaestros = ['Maestro' => ''];
 
 
     $admin = [
-        'Permisos' => 
-    [ 'url' => 'index.php?controller=PermisosController&action=selecRol', 'icon' => '../Views/icons/person_add_FILL0_wght400_GRAD0_opsz24.png'],
-     'Maestros' => 
-     ['url' => 'index.php?controller=UserController&action=index', 'icon' => '../Views/icons/account_box_FILL0_wght400_GRAD0_opsz24.png  '], 
-     'Clases' => ['url' => 'index.php?controller=ClasesController&action=materias', 'icon' => '../Views/icons/school_FILL0_wght400_GRAD0_opsz24.png']];
+        'Permisos' =>
+        ['url' => 'index.php?controller=PermisosController&action=selecRol', 'icon' => '../Views/icons/person_add_FILL0_wght400_GRAD0_opsz24.png'],
+        'Maestros' =>
+        ['url' => 'index.php?controller=UserController&action=index', 'icon' => '../Views/icons/account_box_FILL0_wght400_GRAD0_opsz24.png '],
+        'Clases' => ['url' => 'index.php?controller=ClasesController&action=materias', 'icon' => '../Views/icons/school_FILL0_wght400_GRAD0_opsz24.png']
+    ];
 
 
-  
+
     $navBAr = ['Administrador' => 'index.php?controller=UserController&action=logout'];
-    
+
     $tipoMenu1 = ['MENU ADMINISTRADOR' => 'index.php?controller=UserController&action=dashboard'];
 
     if ($userData['rol_id'] === 1) {
         $menu = $admin;
-
         $menu2 = $navBAr;
         $tipoMenu = $tipoMenu1;
     } else if ($userData['rol_id'] === 2) {
+        
         $menu = $maestros;
         $menu2 = $navBArMaestros;
         $tipoMenu = $tipoMenu2;
@@ -54,13 +57,14 @@ if (isset($_SESSION['userData'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="../assets/info.css">
 
 
 
 </head>
 </head>
+
 <body class="body">
     <nav class="green">
         <ul class="ulNav">
@@ -86,8 +90,6 @@ if (isset($_SESSION['userData'])) {
             </li>
         </ul>
     </nav>
-
-  
 
 </body>
 

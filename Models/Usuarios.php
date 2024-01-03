@@ -28,7 +28,7 @@ class Usuarios
         }
     }
 
- 
+
     public function select($email)
     {
         $query = 'SELECT * FROM informacion WHERE email =?';
@@ -177,6 +177,4 @@ class Usuarios
             echo $e->getMessage();
         }
     }
-    
 }
-

@@ -1,5 +1,14 @@
 <?php
 
+if (isset($_SESSION['userData'])){
+    $dataMaestros = $_SESSION['userData'];
+
+}
+else{
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/index.php';
+}
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Models/Usuarios.php';
 if (isset($_SESSION['claseData']) && !empty($_SESSION['claseData'])) {
     $clase = $_SESSION['claseData'];
 }
@@ -23,7 +32,7 @@ if (isset($_SESSION['claseData']) && !empty($_SESSION['claseData'])) {
 
 
 <section class="infoPage mt-3">
-    <div >
+    <div>
         <?php if (!isset($clase['clases'])) : ?>
             <h3>No hay clases Asignadas</h3>
         <?php else : ?>
@@ -34,44 +43,25 @@ if (isset($_SESSION['claseData']) && !empty($_SESSION['claseData'])) {
         <thead>
             <tr>
                 <th class="id">#</th>
-                <th>Nombre del Alumno</th>
-                <th>Calificacion</th>
-                <th>Mensaje</th>
-                <th>Accion</th>
+                <th>Email</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Asignatura</th>
             </tr>
         </thead>
         <tbody id="tableBody">
-
             <tr>
-                <td>1</td>
-                <td>Carlos Rodríguez</td>
-                <td>80/100</td>
-                <td>..</td>
-                <td>
-                    <span class="material-symbols-outlined">
-                        edit_square
-                    </span>
-                    <span class="material-symbols-outlined">delete</span>
+                <td><?= $dataMaestros['id'] ?></td>
+                <td><?= $dataMaestros['email'] ?></td>
+                <td><?= $dataMaestros['fecha_nacimiento'] ?></td>
+                <td><?php if (!isset($clase['clases'])) : ?>
 
+                        <span class="inactivo">Sin Clase Asignada</span>
 
+                    <?php else : ?>
+                        <?= $clase['clases'] ?>
+                    <?php endif ?>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>Juliana Paez</td>
-                <td>90/100</td>
-                <td>..</td>
-                <td>
-                    <span class="material-symbols-outlined">
-                        edit_square
-                    </span>
-                    <span class="material-symbols-outlined">delete</span>
-
-
-                </td>
-            </tr>
-
-
         </tbody>
     </table>
 
@@ -81,8 +71,6 @@ if (isset($_SESSION['claseData']) && !empty($_SESSION['claseData'])) {
 
 </section>
 <script>
-
-
     $(document).ready(function() {
         $('#myTable').DataTable({
             lengthMenu: [4, 5],
