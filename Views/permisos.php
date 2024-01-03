@@ -35,6 +35,7 @@ $roles = $a->roles();
                 <th>Permiso</th>
                 <th>Estado</th>
                 <th>Accion</th>
+                
             </tr>
         </thead>
         <tbody id="tableBody">

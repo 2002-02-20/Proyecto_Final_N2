@@ -18,7 +18,9 @@ if ($_SESSION['userData']['id'] === 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information</title>
 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 </head>
 </head>
@@ -43,7 +45,11 @@ if ($_SESSION['userData']['id'] === 1) {
             <?php endforeach; ?>
 
             <?php foreach ($menu as $key => $options) : ?>
-                <li class="li"><a href="<?= $options ?>"><?= $key ?></a></li>
+                <li class="li">
+                   
+                    <img src="<?= $options['icon']?>" alt="logo" width="20" height="20">
+                    <a href="<?= $options['url']?>"><?= $key ?></a>
+                </li>
             <?php endforeach; ?>
 
         </div>

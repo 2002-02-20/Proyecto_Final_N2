@@ -10,7 +10,14 @@ if (isset($_SESSION['userData'])) {
 
     $navBArMaestros = ['Maestro' => ''];
 
-    $admin = ['Permisos' => 'index.php?controller=PermisosController&action=selecRol', 'Maestros' => 'index.php?controller=UserController&action=index', 'Clases' => 'index.php?controller=ClasesController&action=materias'];
+
+    $admin = [
+        'Permisos' => 
+    [ 'url' => 'index.php?controller=PermisosController&action=selecRol', 'icon' => '../Views/icons/person_add_FILL0_wght400_GRAD0_opsz24.png'],
+     'Maestros' => 
+     ['url' => 'index.php?controller=UserController&action=index', 'icon' => '../Views/icons/account_box_FILL0_wght400_GRAD0_opsz24.png  '], 
+     'Clases' => ['url' => 'index.php?controller=ClasesController&action=materias', 'icon' => '../Views/icons/school_FILL0_wght400_GRAD0_opsz24.png']];
+
 
   
     $navBAr = ['Administrador' => 'index.php?controller=UserController&action=logout'];
@@ -47,13 +54,13 @@ if (isset($_SESSION['userData'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="../assets/info.css">
 
 
 
 </head>
 </head>
-
 <body class="body">
     <nav class="green">
         <ul class="ulNav">
@@ -63,7 +70,6 @@ if (isset($_SESSION['userData'])) {
                     print_r($usuario);
                     ?>
 
-
                     <span class="material-symbols-outlined">
                         arrow_drop_down
                     </span>
@@ -71,7 +77,7 @@ if (isset($_SESSION['userData'])) {
                 <ul class="ulNavInteractive">
                     <li class="liPerfil"><span class="material-symbols-outlined">
                             account_circle
-                        </span><a href="#" class="liPerfil">Perfil</a></li>
+                        </span><a href="../index.php" class="liPerfil">Perfil</a></li>
 
                     <li class="liLogout"><span class="material-symbols-outlined">
                             logout
