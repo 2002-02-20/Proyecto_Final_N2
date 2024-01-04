@@ -40,18 +40,18 @@
         </section>
     </section>
 
-    <!--   <section class="infoToPass">
+      <section class="infoToPass">
         <h4 class="infoAcceso">Información Acceso</h4>
         <div class="infoAdminMaestro">
             <p><strong>Admin</strong></p>
-            <p>User:derek@gmail.com</p>
-            <p>Pass:1234</p>
+            <p>User:admin@admin</p>
+            <p>Pass:admin</p>
 
             <p><strong>Maestros</strong></p>
-            <p>User:juan@gmail.com</p>
-            <p>Pass:1234</p>
+            <p>User:maestro@maestro</p>
+            <p>Pass:maestro</p>
         </div>
-    </section> -->
+    </section>
 </body>
 
 </html>
