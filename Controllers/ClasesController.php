@@ -56,9 +56,10 @@ class ClasesController
             $id = $_GET['id'];
 
             $usuario = new Clases;
-            $usuario->deleteClass($id, $usuario);
+            $usuario->deleteClass($id);
 
             header('location:  index.php?controller=ClasesController&action=index');
         }
     }
 }
+

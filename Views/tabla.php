@@ -203,14 +203,14 @@ $nom_clases = $clases->clases();
 
                                                 <div class="mb-3">
                                                     <label for="nombres"><strong>Nombre(s)</strong></label><br>
-                                                    <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Ingresa nombre(s)">
+                                                    <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Ingrese sus Nombre(s)">
 
                                                 </div>
 
                                                 <div class="mb-3">
 
                                                     <label for="apellidos"><strong>Apellido(s)</strong></label>
-                                                    <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingresa apellido(s)">
+                                                    <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Ingrese sus Apellido(s)" >
                                                 </div>
 
                                                 <div class="mb-3">

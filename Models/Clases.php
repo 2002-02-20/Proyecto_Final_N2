@@ -93,7 +93,7 @@ class Clases
     public function deleteClass($id)
     {
         $query = 'DELETE FROM clases WHERE id = ?';
-
+       
         try {
             $stm = $this->conexion->prepare($query);
             $stm->execute([$id]);
@@ -102,3 +102,4 @@ class Clases
         }
     }
 }
+
