@@ -3,7 +3,7 @@
 $_SESSION['userData'];
 $nombrePerfil = '';
 
-if ($_SESSION['userData']['id'] === 1) {
+if ($_SESSION['userData']['rol_id'] === 1) {
     $nombrePerfil = 'ADMINISTRADOR';
 } elseif ($_SESSION['userData']['rol_id'] === 2) {
     $nombrePerfil = 'MAESTRO';
